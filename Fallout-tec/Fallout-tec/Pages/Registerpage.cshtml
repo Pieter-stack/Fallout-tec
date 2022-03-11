@@ -1,0 +1,44 @@
+﻿@page
+@model Fallout_tec.Pages.RegisterpageModel
+@{
+}
+
+
+<!--Link Css with page-->
+<head><script href="~css/site.css"></script></head>
+
+<!--Frontend-->
+<img class="backgroundimg" src="~/images/background.png" alt="background"/>  
+<img class="logodark" src="~/images/logoDark.png" alt="logo"/>  
+<h1 class="registerHeading">Welcome to <br> the  Wasteland</h1>
+<h3 class="registertext">Tracking your game inventory</h3>
+
+<!--register page form and pfp data-->
+<h3 class="registerinfo">Create your free account now.</h3>
+<img class="profilepic" src="~/images/placeholderimg.png" alt="pfp"/>
+
+<!--Input field collect data-->
+<input class="reg_username" type="text" placeholder="Username"/>
+<input class="reg_email" type="email" placeholder="Email"/>
+<input class="reg_password" type="password" placeholder="Password"/>
+
+<!--submit btn & go to login href-->
+<button class="registernow">Register Now</button>
+<h5 class="register_login_link">Already have an account? <a style="text-decoration:none;" asp-area="" asp-page="/Loginpage"><strong style="color:#0067B1;"> Log in</strong></a></h5>
+
+
+
+<!--remove header from page-->
+<style type="text/css">
+#footer
+{
+ display:none;
+}
+
+</style>
+
+<script>
+//remove header from page
+document.getElementsByClassName('navbar')[0].remove();
+
+</script>

@@ -11,8 +11,259 @@ html {
 html {
   position: relative;
   min-height: 100%;
+
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0px;
+    width: 100%;
+    height: auto;
 }
+
+.container-fluid {
+    margin: 0px;
+    padding:0px;
+    margin-bottom:-20px;
+    width: 100%;
+    min-height:1080px;
+}
+
+/*Start of Main page Css*/
+
+.logo {
+    width: 110px;
+    height: 60px;
+    position: absolute;
+    left: 20px;
+    top: 1px;
+
+}
+
+.footerlogo {
+    width: 110px;
+    height: 60px;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 1px;
+}
+/*End of Main page Css*/
+/*Start of Login and Register page shared Css*/
+.backgroundimg {
+    width: 100%;
+    height: 1080px;
+}
+
+.logodark {
+    width: 6%;
+    height: 70px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    z-index: 1;
+}
+/*End of Login and Register page shared Css*/
+
+
+/*Start of Register page Css*/
+
+
+
+.registerHeading {
+    position: absolute;
+    left: 60%;
+    top: 40%;
+    z-index: 1;
+    color: #ffffff;
+    font-family: 'Aldrich', sans-serif;
+    font-size: 95px;
+    line-height: 0.9;
+}
+
+.registertext {
+    position: absolute;
+    left: 61%;
+    top: 58%;
+    z-index: 1;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight:200;
+    color: #ffffff;
+}
+
+.registerinfo {
+    position: absolute;
+    left: 15%;
+    top: 20%;
+    z-index: 1;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #333630;
+}
+
+.profilepic {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 8%;
+    top: 25%;
+    z-index: 1;
+}
+
+.reg_username {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 12%;
+    top: 50%;
+    z-index: 1;
+    border: none;
+    border-bottom: 2px solid #939393;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.reg_email {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 12%;
+    top: 57%;
+    z-index: 1;
+    border: none;
+    border-bottom: 2px solid #939393;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.reg_password {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 12%;
+    top: 64%;
+    z-index: 1;
+    border: none;
+    border-bottom: 2px solid #939393;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.registernow {
+    width: 400px;
+    height: 60px;
+    position: absolute;
+    left: 12%;
+    top: 75%;
+    z-index: 1;
+    background-color: #0067B1;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size:26px;
+    border:none;
+}
+
+.register_login_link {
+    width: 400px;
+    height: 60px;
+    position: absolute;
+    left: 16.5%;
+    top: 84%;
+    z-index: 1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight:200;
+}
+
+/* End of Register page Css*/
+
+
+/*Start of Login page Css*/
+
+.loginHeading {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    z-index: 1;
+    color: #5F4A31;
+    font-family: 'Aldrich', sans-serif;
+    font-size: 95px;
+    line-height: 0.9;
+}
+
+
+.login_username {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 10%;
+    top: 40%;
+    z-index: 1;
+    border: none;
+    border-bottom: 2px solid #939393;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.login_password {
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 10%;
+    top: 54%;
+    z-index: 1;
+    border: none;
+    border-bottom: 2px solid #939393;
+    background: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.loginnow {
+    width: 400px;
+    height: 60px;
+    position: absolute;
+    left: 10%;
+    top: 70%;
+    z-index: 1;
+    background-color: #0067B1;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    border: none;
+}
+
+.login_register_link {
+    width: 400px;
+    height: 60px;
+    position: absolute;
+    left: 10%;
+    top: 79%;
+    z-index: 1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+
+/* End of Login page Css*/
+
+/* Start of Home page Css*/
+/* End of Home page Css*/
+
+/* Start of Location page Css*/
+/* End of Location page Css*/
+
+/* Start of Inventory page Css*/
+/* End of Inventory page Css*/
+
+/* Start of Market page Css*/
+/* End of Market page Css*/
+
+/* Start of Crafting page Css*/
+/* End of Crafting page Css*/
+
+/*font-family: 'Aldrich', sans-serif;
+font-family: 'Roboto', sans-serif;*/
+

@@ -15,16 +15,44 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\piete\OneDrive\Documents\GitHub\Fallout-tec\Fallout-tec\Fallout-tec
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Craftingpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JhZnRpbmdwYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Homepage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZXBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Inventorypage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50b3J5cGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Locationpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25wYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Loginpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5wYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Marketpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFya2V0cGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Registerpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJwYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/piete/OneDrive/Documents/GitHub/Fallout-tec/Fallout-tec/Fallout-tec/Pages/Shared/_ValidationScriptsPartial.cshtml]
