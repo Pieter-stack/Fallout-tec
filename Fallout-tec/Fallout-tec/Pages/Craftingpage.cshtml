@@ -2,3 +2,117 @@
 @model Fallout_tec.Pages.craftingpageModel
 @{
 }
+
+
+<!--Link Css with page-->
+<head>
+	<script href="~css/site.css"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</head>
+
+
+<!--Frontend-->
+<div class="staticbackground">
+	<div class="craftingbenchcon">
+		<div class="Workbench Armour">
+			<img class="Workbenchimg" src="~/images/ArmourWorkbench.png" alt="Workbenchimg"/> 
+			<h3 class="workbenchname">Armour Workbench</h3>
+		</div>
+		<div class="Workbench Weapons">
+			<img class="Workbenchimg" src="~/images/WeaponsWorkbench.png" alt="Workbenchimg"/> 
+			<h3 class="workbenchname">Weaopns Workbench</h3>
+		</div>
+		<div class="Workbench Tinker">
+			<img class="Workbenchimg" src="~/images/TinkerWorkbench.png" alt="Workbenchimg"/>
+			<h3 class="workbenchname">Tinker Workbench</h3>
+		</div>
+		<div class="Workbench Chemistry">
+			<img class="Workbenchimg" src="~/images/ChemestryStation.png" alt="Workbenchimg"/>
+			<h3 class="workbenchname">Chemestry Station</h3>
+		</div>
+		<div class="Workbench Cooking">
+			<img class="Workbenchimg" src="~/images/CookingStation.png" alt="Workbenchimg"/> 
+			<h3 class="workbenchname">Cooking Station</h3>
+		</div>
+	    <div class="Workbench Brewing">
+			<img class="Workbenchimg" src="~/images/BrewingStation.png" alt="Workbenchimg"/> 
+			<h3 class="workbenchname">Brewing Station</h3>
+		</div>
+	</div>
+
+	<div class="locationTabCrafting ">
+		<div class="backpacktabCrafting locationtabbtn">
+			<img class="locationimg" src="~/images/backpack.webp" alt="location"/>  
+			Backpack
+		</div>
+		<div class="basetabCrafting ">
+			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
+			Base
+		</div>
+		<div class="SurvivaltenttabCrafting ">
+			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
+			Survival Tent
+		</div>
+</div>
+	<div class="Craftingcon">
+		<h2 class="workbenchitemtypes">Underarmour</h2>
+		<div class="craftitemcon">
+			<div class="craftitem">
+				<!--todo: add image and name h2 tag-->
+			</div>
+			<div class="equalsign">=</div>
+			<div class="craftitemmaterial"></div>
+		    <div class="plussign">+</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script>
+$(document).ready(function() {
+	//onclick for location buttons/ for styling
+$(".backpacktabCrafting").click(function () {
+    $(".basetabCrafting").removeClass("locationtabbtn");
+	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+	//onclick for location buttons/ for styling
+$(".basetabCrafting").click(function () {
+    $(".backpacktabCrafting").removeClass("locationtabbtn");
+	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+	//onclick for location buttons/ for styling
+$(".SurvivaltenttabCrafting").click(function () {
+    $(".basetabCrafting").removeClass("locationtabbtn");
+	$(".backpacktabCrafting").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+});
+
+
+    $(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "100%");
+
+
+$(document).ready(function() {
+	//onclick for location buttons/ for styling
+$(".Workbench").click(function () {
+    $(".Workbench").css("opacity", "30%");
+    $(this).css("opacity", "100%");
+});
+
+});
+
+
+</script>

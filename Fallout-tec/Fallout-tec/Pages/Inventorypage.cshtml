@@ -2,3 +2,116 @@
 @model Fallout_tec.Pages.InventorypageModel
 @{
 }
+
+
+<!--Link Css with page-->
+<head>
+	<script href="~css/site.css"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</head>
+
+<!--frontend-->
+<div class="staticbackground">
+	<div class="locationTab ">
+		<form method="post" asp-page-handler="Searchpack">
+		<div name="backpack" class="backpacktab locationtabbtn" onClick="javascript:this.form.submit();">
+			<img class="locationimg" src="~/images/backpack.webp" alt="location"/>  
+			Backpack
+		</div>
+		</form>
+		<form method="post" asp-page-handler="Searchbase">
+		<div name="homebase" class="basetab " onClick="javascript:this.form.submit();">
+			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
+			Base
+		</div>
+		</form>
+		<form method="post" asp-page-handler="Searchtent">
+		<div name="survivaltent" class="Survivaltenttab  " onClick="javascript:this.form.submit();">
+			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
+			Survival Tent
+		</div>
+		</form>
+
+
+	</div>
+		<div class="topcontentinvholder">
+			<h1 class="JunkAExtrasAGear" style="margin-left:20px;">Junk / </h1>
+			<h1 class="JunkAExtrasAGear">Extras / </h1>
+			<h1 class="JunkAExtrasAGear">Gear</h1>
+			<div class="searchiconcon">
+			<img class="invsearchicon" src="~/images/searchicon.png" alt="searchicon"/> 
+			</div>
+			<input class="invSearch" type="text"/>
+			</div>
+
+
+				<div class="contentinvholder">
+						@foreach(var invItem in Model.InventoryItems){
+					<div class="card invitemcards">
+						 <img src="~/dbimages/@invItem.ItemPicture" class="card-img-top" alt="invimage">
+						 <h1 class="invitemname">@invItem.ItemName</h1>
+					 <div class="card-body">
+						<form method="post" asp-page-handler="update">
+							<input class="invupdate" type="text" name="itemcount" placeholder="@invItem.itemquantity" />
+							<input class="form-control" name="itemname" type="hidden" value="@invItem.ItemName" />
+							<input class="form-control" name="itemlocation" type="hidden" value="@invItem.Location" />
+								<button class="updateinvblock"><img class="updateiteminv" src="~/images/updateicon.png" alt="searchicon"/></button>
+						</form>
+					</div>
+					
+				</div>
+						}
+
+
+				</div>
+</div>
+
+<style>
+::-webkit-input-placeholder {
+   text-align: center;
+   color: #EAE295;
+   font-size:26px;
+}
+
+
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+</style>
+
+<script>
+$(document).ready(function() {
+	//onclick for location buttons/ for styling
+$(".backpacktab").click(function () {
+    $(".basetab").removeClass("locationtabbtn");
+	$(".Survivaltenttab").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+	//onclick for location buttons/ for styling
+$(".basetab").click(function () {
+    $(".backpacktab").removeClass("locationtabbtn");
+	$(".Survivaltenttab").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+	//onclick for location buttons/ for styling
+$(".Survivaltenttab").click(function () {
+    $(".basetab").removeClass("locationtabbtn");
+	$(".backpacktab").removeClass("locationtabbtn");
+    $(this).addClass("locationtabbtn");   
+});
+});
+
+
+</script>

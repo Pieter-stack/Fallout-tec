@@ -2,3 +2,72 @@
 @model Fallout_tec.Pages.homepageModel
 @{
 }
+
+
+<!--Link Css with page-->
+<head>
+	<script href="~css/site.css"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</head>
+
+<!--Frontend-->
+<div class="background">
+	<h1 class="aboutUs">About <br>Fallout-Tec</h1>
+	<h3 class="aboutUsDescription">Fallout-Tec was founded by Pieter Venter to aid all <br> wasteland adventurers of Fallout 76. We are <br> passionate about the community and want to aid <br> all users to have a better ingame experience.</h3>
+	<img class="largeGear" src="~/images/largeYellowGear.png" alt="gear"/> 
+	<h1 class="OurServices">Our Services</h1>
+	<img class="largeBlueGear" src="~/images/largeBlueGear.png" alt="gear"/> 
+	<div class="craftbanner" id="craftbanner">
+	<img class="bannerimg" src="~/images/craftbanner.png" alt="banner"/> 
+	<h1 class="craftbanHeading">Craft to <br>your hearts <br>desire</h1>
+	<button class=btncraftban>Get Crafting Now</button>
+	</div>
+	<div class="buildbanner">
+	<img class="bannerimg" src="~/images/buildbanner.png" alt="banner"/> 
+	<h1 class="buildbanHeading">Build<br> Anywhere</h1>
+		<button class=btnbuildban>Explore Locations</button>
+	</div>
+		<img class="LargeYellowGear" src="~/images/largeYellowGear.png" alt="gear"/> 
+	<div class="invbanner">
+	<img class="bannerimg" src="~/images/invbanner.png" alt="banner"/> 
+	<h1 class="invbanHeading">Store <br> Anything</h1>
+		<button class=btninvban>Check Inventory</button>
+	</div>
+	<h1 class="contactUs">Contact <br> Us</h1>
+	<h1 class="contactUsDetails">fallout-tec@gmail.com<br> 0825974456</h1>
+</div>
+
+<script>
+
+
+$(window).scroll(function() {
+	//scroll animation for first banner
+if ($(this).scrollTop() > 1000) {
+    $('.craftbanner').stop().animate({ left: "20%" });
+} else {
+   $('.craftbanner').stop().animate({ left: "-65%" });
+}
+	//scroll animation for second banner
+if ($(this).scrollTop() > 2100) {
+    $('.buildbanner').stop().animate({ left: "20%" });
+} else {
+   $('.buildbanner').stop().animate({ left: "-65%" });
+}
+	//scroll animation for third banner
+if ($(this).scrollTop() > 3000) {
+    $('.invbanner').stop().animate({ left: "20%" });
+} else {
+   $('.invbanner').stop().animate({ left: "-65%" });
+}
+});
+
+
+
+
+
+</script>
+
+
