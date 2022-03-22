@@ -8,7 +8,7 @@ namespace Fallout_tec.Pages
     public class InventorypageModel : PageModel
     {
 
-        //blocks variable we call from our frontend
+        //inventory variable we call from our frontend
         public List<Inventory> InventoryItems = new List<Inventory>();
 
         public InventorypageModel()
@@ -30,31 +30,29 @@ namespace Fallout_tec.Pages
             //redirect
             return RedirectToPage("./inventorypage");
         }
-
-        public IActionResult OnPostSearchpack(int backpack)
+        public void OnPostSearch(string search)
         {
-            Console.WriteLine($"{backpack}");  
-            Database.SearchUsersbackpack(backpack);
+            Console.WriteLine($"{search}");
+            InventoryItems = Database.GetInputInvSearch(search);
 
-            //redirect
-            return RedirectToPage("./inventorypage");
+
+
         }
-        public IActionResult OnPostSearchbase( int homebase)
+        public void OnPostLocation(int location)
         {
-            Console.WriteLine($"{homebase}");
-            Database.SearchUsersbase(homebase);
+            Console.WriteLine($"{location}");
+            InventoryItems = Database.GetInventorySearch(location);
+          
 
-            //redirect
-            return RedirectToPage("./inventorypage");
-        }
-        public IActionResult OnPostSearchtent( int survivaltent)
-        {
-            Console.WriteLine($"{survivaltent}");
-            Database.SearchUserstent(survivaltent);
 
-            //redirect
-            return RedirectToPage("./inventorypage");
         }
+
+
+
+
+
+
+
 
     }
 }

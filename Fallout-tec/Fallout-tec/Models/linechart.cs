@@ -1,10 +1,7 @@
-﻿using Fallout_tec.Services;
-
-namespace Fallout_tec.Models
+﻿namespace Fallout_tec.Models
 {
-    public class Inventory
+    public class linechart
     {
-        public string ID { get; set; } = String.Empty;
         public string ItemName { get; set; } = String.Empty;
 
         public string ItemType { get; set; } = String.Empty;
@@ -27,11 +24,13 @@ namespace Fallout_tec.Models
             }
         }
 
-        public Inventory(int newCount)
+        public linechart(int newCount)
         {
             itemquantity = newCount;
 
         }
+
+
 
 
     }

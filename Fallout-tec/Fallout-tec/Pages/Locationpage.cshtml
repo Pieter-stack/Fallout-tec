@@ -7,6 +7,7 @@
 
 <!--Link Css with page-->
 <head>
+
 	<script href="~css/site.css"></script>
 	<script
   src="https://code.jquery.com/jquery-3.6.0.js"
@@ -32,13 +33,22 @@
 
 
 	</div>
-	<div class="mapcon"></div>
-	<div class="chartcon"></div>
+	<div class="mapcon">
+		<img class="map" src="~/images/map.png" alt="location"/> 
+	</div>
+	<div class="chartcon">
+		<canvas id="bar" width="400" height="400"></canvas>
+	</div>
 </div>
 
 
 
-	
+@foreach(var item in Model.InventoryItems)
+{
+
+}
+
+
 
 
 
@@ -65,6 +75,34 @@ $(".SurvivaltenttabLocation").click(function () {
     $(this).addClass("locationtabbtn");   
 });
 });
+</script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script type="text/javascript">
+    //Bar Chart
+    var barchart = document.getElementById('bar').getContext('2d');
+    var mybarchart = new Chart(barchart, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6'],
+            datasets: [{
+                label: 'Bar Chart',
+                data: [100, 200, 300, 100, 250, 150],
+                backgroundColor: '#dee2e6',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+  
 </script>

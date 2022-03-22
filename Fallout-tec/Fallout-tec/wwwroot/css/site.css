@@ -26,7 +26,7 @@ body {
     padding:0px;
     margin-bottom:-20px;
     width: 100%;
-    min-height:984px;
+    min-height:952px;
 }
 
 
@@ -596,8 +596,8 @@ body {
 .invsearchicon {
     width: 30px;
     height: 30px;
-    margin-top: 10px;
-    margin-left:15px;
+    margin-top: 3px;
+    margin-left:10px;
 }
 
 .invitemcards {
@@ -632,6 +632,9 @@ body {
     width: 60px;
     height: 60px;
     float: right;
+    border: none;
+    text-align:center;
+    background-color: #333630;
     border-right: 4px solid #0067B1;
     border-top: 4px solid #0067B1;
     border-bottom: 4px solid #0067B1;
@@ -923,7 +926,6 @@ body {
     height: 94%;
     margin-left:5px;
     margin-top: 5px;
-    background-color: red;
     float: left;
 }
 
@@ -966,18 +968,40 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-    /* End of Crafting page Css*/
+
+.craftimage{
+    width:85px;
+    height:85px;
+}
+
+.craftitemname {
+    text-align: center;
+    width: 100%;
+    margin-top:5px;
+    color: #EAE295;
+    font-size: 16px;
+    float: left;
+    font-family: 'Roboto', sans-serif;
+}
 
 
-    /* Start of Location page Css*/
 
 
+
+
+/* End of Crafting page Css*/
+
+
+
+
+
+/* Start of Location page Css*/
 .locationTabLocation {
     width: 200px;
     height: 800px;
     float: left;
     margin-top: 80px;
-    background-color:red;
+    background-color: red;
 }
 
 .backpacktabLocation {
@@ -1038,6 +1062,12 @@ body {
     margin-left: 50px;
     margin-top: 80px;
     background-color: black;
+}
+
+.map {
+    width: 800px;
+    height: 800px;
+    float: left;
 }
 
 .chartcon {

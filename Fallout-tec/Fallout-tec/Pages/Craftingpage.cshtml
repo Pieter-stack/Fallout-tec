@@ -57,19 +57,97 @@
 			Survival Tent
 		</div>
 </div>
+
+@foreach(var recipe in Model.allRecipes){
+
+
 	<div class="Craftingcon">
-		<h2 class="workbenchitemtypes">Underarmour</h2>
+		<h2 class="workbenchitemtypes">@recipe.CraftType</h2>
 		<div class="craftitemcon">
 			<div class="craftitem">
 				<!--todo: add image and name h2 tag-->
+				 <img src="~/dbimages/@recipe.CraftImage" class="card-img-top craftimage" alt="craftimage" style="margin-top:10px;">
+				 <h3 class="craftitemname">@recipe.CraftName</h3>
 			</div>
-			<div class="equalsign">=</div>
-			<div class="craftitemmaterial"></div>
-		    <div class="plussign">+</div>
+
+
+				@for(var i = 0; i < recipe.IngredientsName.Count(); i++)
+				{
+					if( recipe.IngredientsName[i] != "")
+					{
+						if(i == 0)
+						{
+							<div class="equalsign">=</div>
+						}else{
+							<div class="plussign">+</div>
+						}
+
+			<div class="craftitemmaterial">
+
+
+						<h3 class="craftitemname">@recipe.IngredientsName[i]</h3>					
+
+
+
+						<h3 class="craftitemname">@recipe.IngredientsCount[i]</h3>	
+
+
+						<img src="~/dbimages/@recipe.IngredientsImage[i]" class="card-img-top craftimage" alt="craftimage" style="margin-top:10px;">	
+				
+							@{
+								if(recipe.IsCraftable()){
+									<form
+									method="post"
+									asp-page-handler="craft"
+									asp-route-name="@recipe.IngredientsName[i]"
+									asp-route-count="@recipe.IngredientsCount[i]">
+									
+										@{
+											foreach(var ingredient in recipe.IngredientsName)
+											{
+												<input type="hidden" name="ingredients[]" value="@ingredient"/>
+											}
+
+									
+											
+									}
+									
+									<input class="btn-primary btn-dark" type="submit" value="Craft Recipe"/>
+									</form>
+								}
+
+							}
+
+				
+				
+			</div>
+
+					}
+				}
+
+
+
+
+
+
+
+
 		</div>
 	</div>
+}
+
 </div>
 
+
+<style>
+	.container-fluid {
+    margin: 0px;
+    padding:0px;
+    margin-bottom:-20px;
+    width: 100%;
+    height:952px;
+}
+</style>
 
 
 
