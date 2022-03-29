@@ -21,6 +21,14 @@
 </head>
 <body>
 
+<!--
+//if (!Context.Request.Path.ToString().Contains("/Registerpage")) 
+//{
+
+ //   Context.Response.Redirect("/Registerpage");
+//}
+-->
+
     <!--Navbar-->
         <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark  border-bottom box-shadow mb-3" style="background-color:#333630; height:60px; padding:20px;">
@@ -56,9 +64,6 @@
                        <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Craftingpage">Crafting</a>
                         </li>
-                                               <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/charttest">Crafting</a>
-                        </li>
 
                     </ul>
                 </div>
@@ -93,3 +98,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

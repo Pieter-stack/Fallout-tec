@@ -17,6 +17,7 @@ namespace Fallout_tec.Models
         public string CraftImage { get; set; } = string.Empty;
         public string CraftType { get; set; } = string.Empty;
         public string CraftStation { get; set; } = string.Empty;
+        public string LocationId { get; set; } = string.Empty;
 
         public int Count { get { return count; } }
         //TODO : add Ingredients property
@@ -27,24 +28,30 @@ namespace Fallout_tec.Models
         public List<string> IngredientsImage { get; set; }
 
 
+
+
+
+
         public bool IsCraftable()
         {
             //TODO: check if we have all the required resources
             //setup empty dictionary  which will contain item and number
-            var map = new Dictionary<string, int>();
 
-            foreach (var ingredient in IngredientsName)
-            {//loop though all ingerdients add to dictionary
-                if (ingredient != "")
+                var map = new Dictionary<string, int>();
+
+
+            for (int i = 0; i < IngredientsName.Count; i++)
+            {
+                if (IngredientsName[i] != "")
                 {
                     int count;
-                    if (map.TryGetValue(ingredient, out count))//have we added this ingredient before
+                    if (map.TryGetValue(IngredientsName[i], out count))//have we added this ingredient before
                     {
-                        map[ingredient] += 1; //increment count
+                        map[IngredientsName[i]] += 1; //increment count
                     }
                     else //not added ingredient to dictionary
                     {
-                        map.Add(ingredient, 1);  //add the block to it
+                        map.Add(IngredientsName[i], 1);  //add the block to it
                     }
                 }
             }
@@ -65,5 +72,9 @@ namespace Fallout_tec.Models
 
             return result;
         }
+
+
+
+     
     }
 }

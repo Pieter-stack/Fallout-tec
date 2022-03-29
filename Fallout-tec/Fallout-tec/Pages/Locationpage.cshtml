@@ -17,92 +17,186 @@
 
 <!--frontend-->
 <div class="staticbackground">
-	<div class="locationTabLocation ">
-		<div class="backpacktabLocation locationtabbtn">
-			<img class="locationimg" src="~/images/backpack.webp" alt="location"/>  
-			Backpack
+		<form method="post" asp-page-handler="location">
+	<div class="locationTab ">
+
+
+		<div  class="backpacktab locationtabbtn"  onclick="document.forms[0].submit()">
+		 <input id=radio1 name=location type=radio value=1><label for=radio1>Backpack</label>
+			<img class="locationimg" src="~/images/backpack.webp" alt="location"/> 		
 		</div>
-		<div class="basetabLocation ">
+
+
+		<div   class="basetab " onclick="document.forms[0].submit()">
+		 <input id=radio2 name=location type=radio value=2><label for=radio2>Base</label>
 			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
-			Base
+			
 		</div>
-		<div class="SurvivaltenttabLocation ">
+
+		<div  class="Survivaltenttab " onclick="document.forms[0].submit()">
+		 <input id=radio3 name=location type=radio value=3><label for=radio3>Survival Tent</label>
 			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
-			Survival Tent
+		
 		</div>
+		</div>
+	</form>
 
 
+	<div class="travel">
+		<h1 class=traveltext>You’ve travelled</h1>
+		<h1 id="travel" class=traveltextkm>6km</h1>
 	</div>
+
 	<div class="mapcon">
-		<img class="map" src="~/images/map.png" alt="location"/> 
+		<img class="map" src="~/images/map.png" alt="location"/>
+<div class="main">
+  <div class="img-1"><img class="backpacktravel" src="~/images/backpack.webp" alt="gear"/></div>
+  <div class="img-2"><img class="basetravel" src="~/images/base.webp" alt="gear"/></div>
+  <div class="img-3"><img class="tenttravel" src="~/images/survivaltent.webp" alt="gear"/></div>
+</div>
 	</div>
 	<div class="chartcon">
-		<canvas id="bar" width="400" height="400"></canvas>
+		<div class="locationContent">
+			<h1 class="locationdataText">Junk</h1>
+				<img class="gearLocation" src="~/images/largeBlueGear.png" alt="gear"/> 
+				<p class="itemdatalocation">@Model.InventoryItemsJunk.Count</p>	
+		</div>
+		<div class="locationContent">
+			<h1 class="locationdataText">Extras</h1>
+				<img class="gearLocation" src="~/images/largeBlueGear.png" alt="gear"/> 
+				<p class="itemdatalocation">@Model.InventoryItemsExtras.Count</p>	
+		</div>
+		<div class="locationContent">
+			<h1 class="locationdataText">Craftable</h1>
+				<img class="gearLocation" src="~/images/largeBlueGear.png" alt="gear"/> 
+				<p class="itemdatalocation">@Model.InventoryItemsCraftable.Count</p>	
+		</div>
+
 	</div>
 </div>
 
 
 
-@foreach(var item in Model.InventoryItems)
-{
 
+<style>
+#radio1 {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+#radio2 {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+#radio3 {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+.random{
+  width: 60px;
+  height: 60px;
+  position: absolute;
+}
+
+.main {
+  width: 95%;
+  height: 95%;
+  margin: 25px;
+  position: relative;
+}
+
+.img-1 {
+  width: 40px;
+  height: 40px;
+  border-radius:20px;
+  background-color: #FFEB33;
+  color: white;
+  position: absolute;
+}
+
+.img-2 {
+  width: 40px;
+  height: 40px;
+    border-radius:20px;
+  background-color: #FFEB33;
+  color: white;
+  position: absolute;
+}
+
+.img-3 {
+  width: 40px;
+  height: 40px;
+    border-radius:20px;
+  background-color: #FFEB33;
+  color: white;
+  position: absolute;
 }
 
 
 
+</style>
 
 
 
 
-	<script>
+
+
+<script>
 $(document).ready(function() {
 	//onclick for location buttons/ for styling
-$(".backpacktabLocation").click(function () {
-    $(".basetabLocation").removeClass("locationtabbtn");
-	$(".SurvivaltenttabLocation").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
+$(".backpacktab").click(function () {
+	localStorage.setItem("active", 1);  
 });
 	//onclick for location buttons/ for styling
-$(".basetabLocation").click(function () {
-    $(".backpacktabLocation").removeClass("locationtabbtn");
-	$(".SurvivaltenttabLocation").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
+$(".basetab").click(function () {
+	localStorage.setItem("active", 2);  
 });
 	//onclick for location buttons/ for styling
-$(".SurvivaltenttabLocation").click(function () {
-    $(".basetabLocation").removeClass("locationtabbtn");
-	$(".backpacktabLocation").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
+$(".Survivaltenttab").click(function () {
+	localStorage.setItem("active", 3);  
 });
+
+	let activeclass = localStorage.getItem("active");
+	console.log(activeclass)
+
+
+
+	if(activeclass == 1){
+		 $(".backpacktab").addClass("locationtabbtn");
+		     $(".basetab").removeClass("locationtabbtn");
+	$(".Survivaltenttab").removeClass("locationtabbtn");
+	}else if(activeclass == 2){
+		 $(".basetab").addClass("locationtabbtn");
+		     $(".backpacktab").removeClass("locationtabbtn");
+	$(".Survivaltenttab").removeClass("locationtabbtn");
+	}else if(activeclass == 3){
+		 $(".Survivaltenttab").addClass("locationtabbtn");
+		     $(".basetab").removeClass("locationtabbtn");
+	$(".backpacktab").removeClass("locationtabbtn");
+	}
+
+
+document.getElementById("travel").innerHTML =
+Math.floor(Math.random() * 100) + " km";
+
+
+
+
+
 });
+
+
+
+$(".img-1, .img-2, .img-3").each(function(index) {
+  $(this).css({
+    left: Math.random() * ($(".main").width() - $(this).width()),
+    top: Math.random() * ($(".main").height() - $(this).height())
+  });
+});
+
+
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-<script type="text/javascript">
-    //Bar Chart
-    var barchart = document.getElementById('bar').getContext('2d');
-    var mybarchart = new Chart(barchart, {
-        type: 'bar',
-        data: {
-            labels: ['1', '2', '3', '4', '5', '6'],
-            datasets: [{
-                label: 'Bar Chart',
-                data: [100, 200, 300, 100, 250, 150],
-                backgroundColor: '#dee2e6',
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
-  
-</script>
+

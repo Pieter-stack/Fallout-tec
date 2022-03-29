@@ -11,6 +11,9 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "Chart.js/2.9.3": {
+        "type": "package"
+      },
       "Google.Protobuf/3.14.0": {
         "type": "package",
         "dependencies": {
@@ -310,6 +313,21 @@
         "lib/netstandard2.0/BouncyCastle.Crypto.xml",
         "lib/xamarinios/BouncyCastle.Crypto.dll",
         "lib/xamarinios/BouncyCastle.Crypto.xml"
+      ]
+    },
+    "Chart.js/2.9.3": {
+      "sha512": "SY8PuXOJANgsEGMtuXPb/gxazfXdySUuFwTPbQUbw/YKiltR6FJ3mXrLFpr6N2MSCS7oUtfOhTotxLifyJcQNA==",
+      "type": "package",
+      "path": "chart.js/2.9.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "chart.js.2.9.3.nupkg.sha512",
+        "chart.js.nuspec",
+        "content/Content/Chart.css",
+        "content/Content/Chart.min.css",
+        "content/Scripts/Chart.js",
+        "content/Scripts/Chart.min.js"
       ]
     },
     "Google.Protobuf/3.14.0": {
@@ -885,6 +903,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Chart.js >= 2.9.3",
       "MySql.Data >= 8.0.28",
       "Newtonsoft.Json >= 13.0.1"
     ]
@@ -928,6 +947,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Chart.js": {
+            "target": "Package",
+            "version": "[2.9.3, )"
+          },
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.28, )"

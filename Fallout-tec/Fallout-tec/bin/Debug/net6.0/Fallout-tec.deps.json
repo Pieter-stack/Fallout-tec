@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Fallout-tec/1.0.0": {
         "dependencies": {
+          "Chart.js": "2.9.3",
           "MySql.Data": "8.0.28",
           "Newtonsoft.Json": "13.0.1"
         },
@@ -23,6 +24,7 @@
           }
         }
       },
+      "Chart.js/2.9.3": {},
       "Google.Protobuf/3.14.0": {
         "dependencies": {
           "System.Memory": "4.5.4",
@@ -236,6 +238,13 @@
       "sha512": "sha512-6uxsQw2UXrt82VQAWC2td3oBSJjUZ3P4u4DliagB8wf67KsU53V8sW9xwdF+IwZOOZFR0TCZuv/YKZ2BlrfAag==",
       "path": "bouncycastle.netcore/1.8.5",
       "hashPath": "bouncycastle.netcore.1.8.5.nupkg.sha512"
+    },
+    "Chart.js/2.9.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SY8PuXOJANgsEGMtuXPb/gxazfXdySUuFwTPbQUbw/YKiltR6FJ3mXrLFpr6N2MSCS7oUtfOhTotxLifyJcQNA==",
+      "path": "chart.js/2.9.3",
+      "hashPath": "chart.js.2.9.3.nupkg.sha512"
     },
     "Google.Protobuf/3.14.0": {
       "type": "package",

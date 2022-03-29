@@ -62,7 +62,7 @@ namespace Fallout_tec.Services
 
 
 
-        public static List<Inventory> GetInventorySearch(int location)
+        public static List<Inventory> GetCraftingSearch(int location)
         {
             //establish conection
 
@@ -180,6 +180,20 @@ namespace Fallout_tec.Services
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
+
+
+            string sql2 = "UPDATE `crafting` SET `CraftQuantity`= @itemcount WHERE `CraftName`= @itemname AND LocationId = @itemlocation";
+            Console.WriteLine(sql);
+            using var cmd2 = new MySqlCommand(sql2, con);
+
+            cmd2.Parameters.AddWithValue("@itemname", itemname);
+            cmd2.Parameters.AddWithValue("@itemcount", newCount);
+            cmd2.Parameters.AddWithValue("@itemlocation", itemlocation);
+            cmd2.Prepare();
+            cmd2.ExecuteNonQuery();
+
+
+
         }
 
 
@@ -274,7 +288,7 @@ namespace Fallout_tec.Services
             using var con = new MySqlConnection(serverConfiguration);
             con.Open();
             //setup our query
-            string sql = "SELECT * FROM crafting";
+            string sql = "SELECT * FROM crafting WHERE CraftingStation = 'ArmourWorkbench' AND LocationId = '1'";
             using var cmd = new MySqlCommand(sql, con); // perform this new command which is sql and do it in the con established
 
             //creates an instance of our command result that can be read in c#
@@ -291,50 +305,50 @@ namespace Fallout_tec.Services
                     CraftImage = reader.GetString(2),
                     CraftType = reader.GetString(4),
                     CraftStation = reader.GetString(5),
+                    LocationId = reader.GetString(6),
 
-
-    };
+                };
 
 
                 var ingredientsName = new List<string>();
                 var ingredientsCount = new List<string>();
                 var ingredientsImage = new List<string>();
 
-                ingredientsName.Add(reader.GetString(6)); //ingredient1
-                ingredientsCount.Add(reader.GetString(7)); //ingredient1Count
-                ingredientsImage.Add(reader.GetString(8)); //ingredient1Image
+                ingredientsName.Add(reader.GetString(7)); //ingredient1
+                ingredientsCount.Add(reader.GetString(8)); //ingredient1Count
+                ingredientsImage.Add(reader.GetString(9)); //ingredient1Image
 
 
-                ingredientsName.Add(reader.GetString(9)); //ingredient2
-                ingredientsCount.Add(reader.GetString(10)); //ingredient2Count
-                ingredientsImage.Add(reader.GetString(11)); //ingredient2Image
+                ingredientsName.Add(reader.GetString(10)); //ingredient2
+                ingredientsCount.Add(reader.GetString(11)); //ingredient2Count
+                ingredientsImage.Add(reader.GetString(12)); //ingredient2Image
 
 
-                ingredientsName.Add(reader.GetString(12)); //ingredient3
-                ingredientsCount.Add(reader.GetString(13)); //ingredient3Count
-                ingredientsImage.Add(reader.GetString(14)); //ingredient3Image
+                ingredientsName.Add(reader.GetString(13)); //ingredient3
+                ingredientsCount.Add(reader.GetString(14)); //ingredient3Count
+                ingredientsImage.Add(reader.GetString(15)); //ingredient3Image
 
 
-                ingredientsName.Add(reader.GetString(15)); //ingredient4
-                ingredientsCount.Add(reader.GetString(16)); //ingredient4Count
-                ingredientsImage.Add(reader.GetString(17)); //ingredient4Image
+                ingredientsName.Add(reader.GetString(16)); //ingredient4
+                ingredientsCount.Add(reader.GetString(17)); //ingredient4Count
+                ingredientsImage.Add(reader.GetString(18)); //ingredient4Image
 
 
 
-                ingredientsName.Add(reader.GetString(18)); //ingredient5
-                ingredientsCount.Add(reader.GetString(19)); //ingredient5Count
-                ingredientsImage.Add(reader.GetString(20)); //ingredient5Image
+                ingredientsName.Add(reader.GetString(19)); //ingredient5
+                ingredientsCount.Add(reader.GetString(20)); //ingredient5Count
+                ingredientsImage.Add(reader.GetString(21)); //ingredient5Image
 
 
  
-                ingredientsName.Add(reader.GetString(21)); //ingredient6
-                ingredientsCount.Add(reader.GetString(22)); //ingredient6Count
-                ingredientsImage.Add(reader.GetString(23)); //ingredient6Image
+                ingredientsName.Add(reader.GetString(22)); //ingredient6
+                ingredientsCount.Add(reader.GetString(23)); //ingredient6Count
+                ingredientsImage.Add(reader.GetString(24)); //ingredient6Image
 
 
-                ingredientsName.Add(reader.GetString(24)); //ingredient7
-                ingredientsCount.Add(reader.GetString(25)); //ingredient7Count
-                ingredientsImage.Add(reader.GetString(26)); //ingredient7Image
+                ingredientsName.Add(reader.GetString(25)); //ingredient7
+                ingredientsCount.Add(reader.GetString(26)); //ingredient7Count
+                ingredientsImage.Add(reader.GetString(27)); //ingredient7Image
 
                 recipe.IngredientsName = ingredientsName;
                 recipe.IngredientsCount = ingredientsCount;
@@ -350,26 +364,38 @@ namespace Fallout_tec.Services
 
 
 
-        public static void CraftRecipe(string nameId, int newcount, List<string> ingredients)
+        public static void CraftRecipe(string name, int newcount, string location, List<string> ingredientsName, List<string> ingredientsCount)
         {
 
             //TODO: Remove the ingredients
-          //  UpdateBlockCountAfterCraft(ingredients);
+              UpdateItemsCountAfterCraft(ingredientsName, ingredientsCount);
 
             using var con = new MySqlConnection(serverConfiguration);
             con.Open();
 
             //sql query
-            string sql = "UPDATE `crafting` SET `CraftQuantity`= @count WHERE `CraftName`= @name";
+            string sql = "UPDATE `inventory` SET `ItemQuantity`= @count WHERE `ItemName`= @name  AND Location_id = @location";
+            Console.WriteLine(sql);
             using var cmd = new MySqlCommand(sql, con);
 
-            cmd.Parameters.AddWithValue("@name", nameId);
             cmd.Parameters.AddWithValue("@count", newcount);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@location", location);
 
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
+            //sql query
+            string sql2 = "UPDATE `crafting` SET `CraftQuantity`= @count WHERE `CraftName`= @name  AND LocationId = @location";
+            Console.WriteLine(sql);
+            using var cmd2 = new MySqlCommand(sql2, con);
 
+            cmd2.Parameters.AddWithValue("@count", newcount);
+            cmd2.Parameters.AddWithValue("@name", name);
+            cmd2.Parameters.AddWithValue("@location", location);
+
+            cmd2.Prepare();
+            cmd2.ExecuteNonQuery();
 
 
 
@@ -377,37 +403,264 @@ namespace Fallout_tec.Services
 
 
 
+        public static void UpdateItemsCountAfterCraft(List<string> ingredientsName, List<string> ingredientsCount)
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            foreach (var ingredient in ingredientsName)
+            {
+
+                if (ingredient != "")
+                {
+
+                    //skryf function
+                    //for(var i = 0l i < name.length; i++{
+                    // name[i] same wees as count[i]
+                    //}
+
+                    int currentcount = GetCountOfItems(ingredient);
+                    //sql query
+                    string sql = "UPDATE `inventory` SET `ItemQuantity` = @count WHERE `ItemName` = @name";
+                    using var cmd = new MySqlCommand(sql, con);
+
+
+                    cmd.Parameters.AddWithValue("@name", ingredient);
+                    cmd.Parameters.AddWithValue("@count", currentcount - 1);
+
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public static int GetCountOfItems(string name)
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            string sql = "SELECT `ItemQuantity` FROM inventory WHERE ItemName = @name";
+            using var cmd = new MySqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("@name", name);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            int count = 0;
+
+            while (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+
+            return count;
+        }
+
+  
 
 
 
 
 
+    public static List<Recipe> GetCraftingPageSearch(int location, string station)
+        {
+            //establish conection
+
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            //sql query
+            string sql = "SELECT * FROM crafting WHERE LocationId = @location AND CraftingStation = @station";
+            Console.WriteLine(sql);
+            using var cmd = new MySqlCommand(sql, con);
+
+
+            cmd.Parameters.AddWithValue("@location", location);
+            cmd.Parameters.AddWithValue("@station", station);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            //init our return list
+            var results = new List<Recipe>();
+            //go through our readable data do thbis for each entry
+            while (reader.Read())
+            {
+                var recipe = new Recipe(reader.GetInt32(3))
+                {
+                    CraftName = reader.GetString(1), // index of our column order
+                    CraftImage = reader.GetString(2),
+                    CraftType = reader.GetString(4),
+                    CraftStation = reader.GetString(5),
+                    LocationId = reader.GetString(6),
+
+                };
+
+
+                var ingredientsName = new List<string>();
+                var ingredientsCount = new List<string>();
+                var ingredientsImage = new List<string>();
+
+                ingredientsName.Add(reader.GetString(7)); //ingredient1
+                ingredientsCount.Add(reader.GetString(8)); //ingredient1Count
+                ingredientsImage.Add(reader.GetString(9)); //ingredient1Image
+
+
+                ingredientsName.Add(reader.GetString(10)); //ingredient2
+                ingredientsCount.Add(reader.GetString(11)); //ingredient2Count
+                ingredientsImage.Add(reader.GetString(12)); //ingredient2Image
+
+
+                ingredientsName.Add(reader.GetString(13)); //ingredient3
+                ingredientsCount.Add(reader.GetString(14)); //ingredient3Count
+                ingredientsImage.Add(reader.GetString(15)); //ingredient3Image
+
+
+                ingredientsName.Add(reader.GetString(16)); //ingredient4
+                ingredientsCount.Add(reader.GetString(17)); //ingredient4Count
+                ingredientsImage.Add(reader.GetString(18)); //ingredient4Image
 
 
 
+                ingredientsName.Add(reader.GetString(19)); //ingredient5
+                ingredientsCount.Add(reader.GetString(20)); //ingredient5Count
+                ingredientsImage.Add(reader.GetString(21)); //ingredient5Image
 
 
 
+                ingredientsName.Add(reader.GetString(22)); //ingredient6
+                ingredientsCount.Add(reader.GetString(23)); //ingredient6Count
+                ingredientsImage.Add(reader.GetString(24)); //ingredient6Image
+
+
+                ingredientsName.Add(reader.GetString(25)); //ingredient7
+                ingredientsCount.Add(reader.GetString(26)); //ingredient7Count
+                ingredientsImage.Add(reader.GetString(27)); //ingredient7Image
+
+                recipe.IngredientsName = ingredientsName;
+                recipe.IngredientsCount = ingredientsCount;
+                recipe.IngredientsImage = ingredientsImage;
+
+
+                results.Add(recipe);
+
+            }
+            //return TagHelperServicesExtensions final results after adding
+            return results;
+
+        }
 
 
 
+        public static List<Inventory> GetInventoryJunk(int location)
+        {
+            //create and open db con
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            //setup our query
+            string sql = "SELECT * FROM inventory WHERE ItemQuantity > 0 AND ItemType = 'Junk' AND  Location_id = @location ";
+            using var cmd = new MySqlCommand(sql, con); // perform this new command which is sql and do it in the con established
+            cmd.Parameters.AddWithValue("@location", location);
+            //creates an instance of our command result that can be read in c#
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            //init our return list
+            var results = new List<Inventory>();
+
+            while (reader.Read())
+            {
+                var InvItems = new Inventory(reader.GetInt32(2))
+                {
+                    ID = reader.GetString(0),
+                    ItemName = reader.GetString(1), // index of our column order
+                    ItemType = reader.GetString(4),
+                    ItemPicture = reader.GetString(3),
+                    Location = reader.GetString(5),
+
+                };
+                results.Add(InvItems);
+            }
+            //return TagHelperServicesExtensions final results after adding
+            return results;
+        }
 
 
+        public static List<Inventory> GetInventoryExtras(int location)
+        {
+            //create and open db con
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            //setup our query
+            string sql = "SELECT * FROM inventory WHERE ItemQuantity > 0 AND ItemType = 'Exras' AND  Location_id = @location ";
+            using var cmd = new MySqlCommand(sql, con); // perform this new command which is sql and do it in the con established
+            cmd.Parameters.AddWithValue("@location", location);
+            //creates an instance of our command result that can be read in c#
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            //init our return list
+            var results = new List<Inventory>();
+
+            while (reader.Read())
+            {
+                var InvItems = new Inventory(reader.GetInt32(2))
+                {
+                    ID = reader.GetString(0),
+                    ItemName = reader.GetString(1), // index of our column order
+                    ItemType = reader.GetString(4),
+                    ItemPicture = reader.GetString(3),
+                    Location = reader.GetString(5),
+
+                };
+                results.Add(InvItems);
+            }
+            //return TagHelperServicesExtensions final results after adding
+            return results;
+        }
 
 
+        public static List<Inventory> GetInventoryCraftable(int location)
+        {
+            //create and open db con
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
 
+            //setup our query
+            string sql = "SELECT * FROM inventory WHERE ItemQuantity > 0 AND ItemType = 'Craftable' AND  Location_id = @location ";
+            using var cmd = new MySqlCommand(sql, con); // perform this new command which is sql and do it in the con established
+            cmd.Parameters.AddWithValue("@location", location);
+            //creates an instance of our command result that can be read in c#
+            using MySqlDataReader reader = cmd.ExecuteReader();
 
+            //init our return list
+            var results = new List<Inventory>();
 
+            while (reader.Read())
+            {
+                var InvItems = new Inventory(reader.GetInt32(2))
+                {
+                    ID = reader.GetString(0),
+                    ItemName = reader.GetString(1), // index of our column order
+                    ItemType = reader.GetString(4),
+                    ItemPicture = reader.GetString(3),
+                    Location = reader.GetString(5),
 
-
-
-
-
-
-
+                };
+                results.Add(InvItems);
+            }
+            //return TagHelperServicesExtensions final results after adding
+            return results;
+        }
 
 
 
 
     }
 }
+
+
+
+
+
+

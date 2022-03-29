@@ -16,54 +16,94 @@
 
 <!--Frontend-->
 <div class="staticbackground">
+			<form method="post" asp-page-handler="location" >
+		  <input id="station"   name="station" type="hidden" value="" >
+		  <input id="station2"  name="location" type="hidden" value="" >
 	<div class="craftingbenchcon">
-		<div class="Workbench Armour">
-			<img class="Workbenchimg" src="~/images/ArmourWorkbench.png" alt="Workbenchimg"/> 
+
+		<div class="Workbench Armour" onclick="document.forms[0].submit()">
+			<img class="Workbenchimg" src="~/images/ArmourWorkbench.png" alt="Workbenchimg" /> 
+			 <input id="station"  name="station" type="hidden" value="ArmourWorkbench" >
 			<h3 class="workbenchname">Armour Workbench</h3>
 		</div>
-		<div class="Workbench Weapons">
+		<div class="Workbench Weapons" onclick="document.forms[0].submit()">
 			<img class="Workbenchimg" src="~/images/WeaponsWorkbench.png" alt="Workbenchimg"/> 
-			<h3 class="workbenchname">Weaopns Workbench</h3>
+			 <input id="station"  name="station" type="hidden" value="WeaponsWorkbench" >
+			<h3 class="workbenchname">Weapons Workbench</h3>
 		</div>
-		<div class="Workbench Tinker">
+		<div class="Workbench Tinker" onclick="document.forms[0].submit()">
 			<img class="Workbenchimg" src="~/images/TinkerWorkbench.png" alt="Workbenchimg"/>
+			 <input id="station"  name="station" type="hidden" value="TinkerWorkbench" >
 			<h3 class="workbenchname">Tinker Workbench</h3>
 		</div>
-		<div class="Workbench Chemistry">
+		<div class="Workbench Chemistry" onclick="document.forms[0].submit()">
 			<img class="Workbenchimg" src="~/images/ChemestryStation.png" alt="Workbenchimg"/>
+			 <input id="station"  name="station" type="hidden" value="ChemistryStation" >
 			<h3 class="workbenchname">Chemestry Station</h3>
 		</div>
-		<div class="Workbench Cooking">
+		<div class="Workbench Cooking" onclick="document.forms[0].submit()">
 			<img class="Workbenchimg" src="~/images/CookingStation.png" alt="Workbenchimg"/> 
+			 <input id="station"  name="station" type="hidden" value="CookingStation" >
 			<h3 class="workbenchname">Cooking Station</h3>
 		</div>
-	    <div class="Workbench Brewing">
+	    <div class="Workbench Brewing" onclick="document.forms[0].submit()">
 			<img class="Workbenchimg" src="~/images/BrewingStation.png" alt="Workbenchimg"/> 
+			 <input id="station"  name="station" type="hidden" value="BrewingStation" >
 			<h3 class="workbenchname">Brewing Station</h3>
 		</div>
 	</div>
 
-	<div class="locationTabCrafting ">
-		<div class="backpacktabCrafting locationtabbtn">
-			<img class="locationimg" src="~/images/backpack.webp" alt="location"/>  
-			Backpack
-		</div>
-		<div class="basetabCrafting ">
-			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
-			Base
-		</div>
-		<div class="SurvivaltenttabCrafting ">
-			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
-			Survival Tent
-		</div>
-</div>
 
-@foreach(var recipe in Model.allRecipes){
+
+
+
+
+
+
+	<div class="locationTabCrafting ">
+
+
+		<div  class="backpacktabCrafting locationtabbtn"  onclick="document.forms[0].submit()">
+		 <input id=radio1 name=location type=radio value=1><label for=radio1>Backpack</label>
+			<img class="locationimg" src="~/images/backpack.webp" alt="location"/> 		
+		</div>
+
+
+		<div   class="basetabCrafting " onclick="document.forms[0].submit()">
+		 <input id=radio2 name=location type=radio value=2><label for=radio2>Base</label>
+			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
+			
+		</div>
+
+		<div  class="SurvivaltenttabCrafting " onclick="document.forms[0].submit()">
+		 <input id=radio3 name=location type=radio value=3><label for=radio3>Survival Tent</label>
+			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
+		
+		</div>
+		</div>
+	</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<div class="Craftingcon">
-		<h2 class="workbenchitemtypes">@recipe.CraftType</h2>
+		<h2 class="workbenchitemtypes">CraftType</h2>
+					@foreach(var recipe in Model.allRecipes){
 		<div class="craftitemcon">
+
 			<div class="craftitem">
 				<!--todo: add image and name h2 tag-->
 				 <img src="~/dbimages/@recipe.CraftImage" class="card-img-top craftimage" alt="craftimage" style="margin-top:10px;">
@@ -94,47 +134,63 @@
 
 						<img src="~/dbimages/@recipe.IngredientsImage[i]" class="card-img-top craftimage" alt="craftimage" style="margin-top:10px;">	
 				
-							@{
-								if(recipe.IsCraftable()){
-									<form
-									method="post"
-									asp-page-handler="craft"
-									asp-route-name="@recipe.IngredientsName[i]"
-									asp-route-count="@recipe.IngredientsCount[i]">
-									
-										@{
-											foreach(var ingredient in recipe.IngredientsName)
-											{
-												<input type="hidden" name="ingredients[]" value="@ingredient"/>
-											}
 
-									
-											
-									}
-									
-									<input class="btn-primary btn-dark" type="submit" value="Craft Recipe"/>
-									</form>
-								}
-
-							}
 
 				
 				
 			</div>
 
-					}
-				}
+
+													
+								if(recipe.IsCraftable()){
+									<form
+									method="post"
+									asp-page-handler="craft"
+									asp-route-name="@recipe.CraftName"
+									asp-route-count="@recipe.Count"
+									asp-route-location="@recipe.LocationId"
+									>
+									
+										@{
+
+											@for(var j = 0; j < recipe.IngredientsName.Count(); j++){
+												if(recipe.IngredientsName[i] != "")
+												{
+													<input type="hidden" name="ingredientsName[]" value="@recipe.IngredientsName[j]"/>
+												}
+											}
+										   @for(var k = 0; k < recipe.IngredientsCount.Count(); k++){
+
+											if(recipe.IngredientsCount[k] != "0")
+												{
+													<input type="hidden" name="ingredientsCount[]" value="@recipe.IngredientsCount[k]"/>
+												}
+									
+											}
+		
+									}
+									
+									<input class="craftbutton" type="submit" value="Craft"/>
+									</form>	
+					
 
 
 
+				
 
+
+									}
+								}
+
+}
 
 
 
 
 		</div>
+		}
 	</div>
-}
+
 
 </div>
 
@@ -147,6 +203,22 @@
     width: 100%;
     height:952px;
 }
+
+
+#radio1 {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+#radio2 {
+    display: none;
+    /*visibility: hidden;*/
+}
+
+#radio3 {
+    display: none;
+    /*visibility: hidden;*/
+}
 </style>
 
 
@@ -154,25 +226,8 @@
 
 <script>
 $(document).ready(function() {
-	//onclick for location buttons/ for styling
-$(".backpacktabCrafting").click(function () {
-    $(".basetabCrafting").removeClass("locationtabbtn");
-	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
-});
-	//onclick for location buttons/ for styling
-$(".basetabCrafting").click(function () {
-    $(".backpacktabCrafting").removeClass("locationtabbtn");
-	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
-});
-	//onclick for location buttons/ for styling
-$(".SurvivaltenttabCrafting").click(function () {
-    $(".basetabCrafting").removeClass("locationtabbtn");
-	$(".backpacktabCrafting").removeClass("locationtabbtn");
-    $(this).addClass("locationtabbtn");   
-});
-});
+
+
 
 
     $(".Weapons").css("opacity", "30%");
@@ -183,14 +238,161 @@ $(".SurvivaltenttabCrafting").click(function () {
 	$(".Armour").css("opacity", "100%");
 
 
-$(document).ready(function() {
 	//onclick for location buttons/ for styling
 $(".Workbench").click(function () {
     $(".Workbench").css("opacity", "30%");
     $(this).css("opacity", "100%");
-});
 
 });
+});
+
+
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+
+
+$(".Weapons").click(function () {
+	localStorage.setItem("station", "WeaponsWorkbench");  
+});
+
+$(".Tinker").click(function () {
+	localStorage.setItem("station", "TinkerWorkbench");  
+});
+
+$(".Chemistry").click(function () {
+	localStorage.setItem("station", "ChemistryStation");  
+});
+
+$(".Cooking").click(function () {
+	localStorage.setItem("station", "CookingStation");  
+});
+
+$(".Brewing").click(function () {
+	localStorage.setItem("station", "BrewingStation");  
+});
+
+$(".Armour").click(function () {
+	localStorage.setItem("station", "ArmourWorkbench");  
+});
+
+	let getstation = localStorage.getItem("station");
+	console.log(getstation)
+
+
+
+
+	if(getstation == "ArmourWorkbench"){
+    $(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "100%");
+
+	document.getElementById('station').setAttribute('value',"ArmourWorkbench");
+
+	}else if(getstation == "WeaponsWorkbench"){
+    $(".Weapons").css("opacity", "100%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "30%");
+
+		document.getElementById('station').setAttribute('value', "WeaponsWorkbench");
+
+	}else if(getstation == "TinkerWorkbench"){
+    $(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "100%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "30%");
+		document.getElementById('station').setAttribute('value', "TinkerWorkbench");
+
+	}else if(getstation == "ChemistryStation"){
+	$(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "100%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "30%");
+		document.getElementById('station').setAttribute('value', "ChemistryStation");
+
+	}else if(getstation == "CookingStation"){
+    $(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "100%");
+	$(".Brewing").css("opacity", "30%");
+	$(".Armour").css("opacity", "30%");
+		document.getElementById('station').setAttribute('value', "CookingStation");
+
+	}else if(getstation == "BrewingStation"){
+    $(".Weapons").css("opacity", "30%");
+	$(".Tinker").css("opacity", "30%");
+	$(".Chemistry").css("opacity", "30%");
+	$(".Cooking").css("opacity", "30%");
+	$(".Brewing").css("opacity", "100%");
+	$(".Armour").css("opacity", "30%");
+		document.getElementById('station').setAttribute('value', "BrewingStation");
+
+	}
+
+
+
+
+
+
+
+
+
+	//onclick for location buttons/ for styling
+$(".backpacktabCrafting").click(function () {
+	localStorage.setItem("active", 1);  
+
+});
+	//onclick for location buttons/ for styling
+$(".basetabCrafting").click(function () {
+	localStorage.setItem("active", 2);  
+});
+	//onclick for location buttons/ for styling
+$(".SurvivaltenttabCrafting").click(function () {
+	localStorage.setItem("active", 3);  
+});
+
+	let activeclass = localStorage.getItem("active");
+	console.log(activeclass)
+
+
+
+	if(activeclass == 1){
+		 $(".backpacktabCrafting").addClass("locationtabbtn");
+		     $(".basetabCrafting").removeClass("locationtabbtn");
+	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
+		document.getElementById('station2').setAttribute('value', 1);
+	}else if(activeclass == 2){
+		 $(".basetabCrafting").addClass("locationtabbtn");
+		     $(".backpacktabCrafting").removeClass("locationtabbtn");
+	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
+			document.getElementById('station2').setAttribute('value', 2);
+	}else if(activeclass == 3){
+		 $(".SurvivaltenttabCrafting").addClass("locationtabbtn");
+		     $(".basetabCrafting").removeClass("locationtabbtn");
+	$(".backpacktabCrafting").removeClass("locationtabbtn");
+			document.getElementById('station2').setAttribute('value',3);
+	}
+
+});
+
+
+
+
+
 
 
 </script>

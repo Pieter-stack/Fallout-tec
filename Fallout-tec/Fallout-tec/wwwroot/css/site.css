@@ -26,7 +26,7 @@ body {
     padding:0px;
     margin-bottom:-20px;
     width: 100%;
-    min-height:952px;
+    min-height:950px;
 }
 
 
@@ -491,7 +491,7 @@ body {
 
 .staticbackground {
     width: 100%;
-    height:964px;
+    height:952px;
     margin-top: -21px;
     background-color: #333630;
 }
@@ -985,16 +985,21 @@ body {
 }
 
 
+.craftbutton {
+    height: 148px;
+    color: #FFEB33;
+    font-size:36px;
+    width: 15%;
+    border: none;
+    background-color: #0067B1;
+    float: right;
+    margin-top: -23px;
+}
 
 
 
 
 /* End of Crafting page Css*/
-
-
-
-
-
 /* Start of Location page Css*/
 .locationTabLocation {
     width: 200px;
@@ -1059,9 +1064,9 @@ body {
     width: 800px;
     height: 800px;
     float: left;
-    margin-left: 50px;
+    margin-left: 450px;
     margin-top: 80px;
-    background-color: black;
+
 }
 
 .map {
@@ -1071,20 +1076,109 @@ body {
 }
 
 .chartcon {
-    width: 800px;
+    width: 500px;
     height: 800px;
     float: left;
     margin-left: 50px;
     margin-top: 80px;
-    background-color: black;
+}
+
+.locationContent {
+    width: 100%;
+    height: 150px;
+    background-color: #202320;
+    float:left;
+    margin-bottom:30px;
+
+}
+
+.locationdataText {
+   float:left;
+   margin-top:52px;
+   margin-left:20px;
+    text-align: Left;
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.itemdatalocation {
+    width:100px;
+    height:50px;
+    position:absolute;
+    margin-top: 52px;
+    margin-left: 365px;
+
+    text-align: center;
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.gearLocation {
+    margin-top: 10px;
+    margin-right: 20px;
+    width: 130px;
+    height: 130px;
+    float: right;
+}
+
+.travel {
+    width: 500px;
+    height:300px;
+    background-color: #202320;
+   margin-top:500px;
+   margin-left:100px;
+   position:absolute;
+}
+
+.traveltext {
+    float: left;
+    margin-top: 52px;
+    width:100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.traveltextkm {
+    float: left;
+    margin-top: 60px;
+    width: 100%;
+    text-align: center;
+    color: #FFEB33;
+    font-size: 46px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+
+.backpacktravel{
+    width:32px;
+    height:32px;
+    margin-left:4px;
+margin-top:4px;
+
+}
+
+.basetravel {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+.tenttravel {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+    margin-top: 4px;
 }
 
 
 
 
-    /* End of Location page Css*/
-
-
+/* End of Location page Css*/
 /*Style scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;

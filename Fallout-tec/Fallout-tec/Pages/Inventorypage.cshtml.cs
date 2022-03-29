@@ -34,14 +34,14 @@ namespace Fallout_tec.Pages
         {
             Console.WriteLine($"{search}");
             InventoryItems = Database.GetInputInvSearch(search);
-
+            //search must be refined to only search for letters and also name needs tro be static after search
 
 
         }
         public void OnPostLocation(int location)
         {
             Console.WriteLine($"{location}");
-            InventoryItems = Database.GetInventorySearch(location);
+            InventoryItems = Database.GetCraftingSearch(location);
           
 
 

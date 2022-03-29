@@ -9,20 +9,30 @@ namespace Fallout_tec.Pages
     public class loactionpageModel : PageModel
     {
         //inventory variable we call from our frontend
-        public List<Inventory> InventoryItems = new List<Inventory>();
+        public List<Inventory> InventoryItemsJunk = new List<Inventory>();
+        public List<Inventory> InventoryItemsExtras = new List<Inventory>();
+        public List<Inventory> InventoryItemsCraftable = new List<Inventory>();
 
 
 
 
-
-        public void OnGet()
+        public void OnGet(int location)
         {
-            //convert to json
-            JsonConvert.SerializeObject(InventoryItems);
+
+            InventoryItemsJunk = Database.GetInventoryJunk(1);
+            InventoryItemsExtras = Database.GetInventoryExtras(1);
+            InventoryItemsCraftable = Database.GetInventoryCraftable(1);
+        }
+
+
+        public void OnPostLocation(int location)
+        {
+            InventoryItemsJunk = Database.GetInventoryJunk(location);
+            InventoryItemsExtras = Database.GetInventoryExtras(location);
+            InventoryItemsCraftable = Database.GetInventoryCraftable(location);
 
 
 
-            InventoryItems = Database.GetInventory();
         }
 
 
