@@ -29,16 +29,22 @@ body {
     min-height:950px;
 }
 
+.navtext{
+    color:grey;
+    text-decoration:none;
+}
 
+    .navtext:hover {
+        color: #0067B1;
+        text-decoration: none;
+    }
 /*Start of Main page Css*/
-
 .logo {
     width: 110px;
     height: 60px;
     position: absolute;
     left: 20px;
     top: 1px;
-
 }
 
 .footerlogo {
@@ -48,10 +54,17 @@ body {
     margin-left: 20px;
     margin-top: 1px;
 }
+
+.backgroundimages{
+    width:100%;
+}
+
+
+
 /*End of Main page Css*/
 /*Start of Login and Register page shared Css*/
 .backgroundimg {
-    width: 100%;
+    width: 102%;
     height: 1080px;
 }
 
@@ -63,13 +76,31 @@ body {
     top: 10px;
     z-index: 1;
 }
+
+.regmessage {
+    color: #ffffff;
+    font-family: 'Aldrich', sans-serif;
+    float:left;
+    margin-left:15px;
+    text-align:center;
+    margin-right:15px;
+    margin-top:25px;
+    font-size: 26px;
+    line-height: 0.9;
+}
+
+.regfail{
+width:200px;
+height:auto;
+float:left;
+margin-left:30%;
+margin-right:30%;
+}
+
+
+
 /*End of Login and Register page shared Css*/
-
-
 /*Start of Register page Css*/
-
-
-
 .registerHeading {
     position: absolute;
     left: 60%;
@@ -95,7 +126,7 @@ body {
 .registerinfo {
     position: absolute;
     left: 15%;
-    top: 20%;
+    top: 30%;
     z-index: 1;
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
@@ -108,7 +139,7 @@ body {
     height: 50px;
     position: absolute;
     left: 12%;
-    top: 50%;
+    top: 40%;
     z-index: 1;
     border: none;
     border-bottom: 2px solid #939393;
@@ -121,7 +152,7 @@ body {
     height: 50px;
     position: absolute;
     left: 12%;
-    top: 57%;
+    top: 47%;
     z-index: 1;
     border: none;
     border-bottom: 2px solid #939393;
@@ -134,7 +165,7 @@ body {
     height: 50px;
     position: absolute;
     left: 12%;
-    top: 64%;
+    top: 54%;
     z-index: 1;
     border: none;
     border-bottom: 2px solid #939393;
@@ -161,7 +192,7 @@ body {
     width: 400px;
     height: 60px;
     position: absolute;
-    left: 16.5%;
+    left: 14%;
     top: 84%;
     z-index: 1;
     font-family: 'Roboto', sans-serif;
@@ -169,79 +200,29 @@ body {
     font-weight:200;
 }
 
+.popup {
+    width: 500px;
+    height: 430px;
+    background-color: #0067B1;
+    position: absolute;
+    left: 35%;
+    top: 25%;
+    z-index: 100;
+    border: 5px solid #FFEB33;
+}
+
+
+
+#closebutton {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
 /* End of Register page Css*/
 
 
-/*Start of Login page Css*/
-
-.loginHeading {
-    position: absolute;
-    left: 10%;
-    top: 15%;
-    z-index: 1;
-    color: #5F4A31;
-    font-family: 'Aldrich', sans-serif;
-    font-size: 95px;
-    line-height: 0.9;
-}
-
-
-.login_username {
-    width: 400px;
-    height: 50px;
-    position: absolute;
-    left: 10%;
-    top: 40%;
-    z-index: 1;
-    border: none;
-    border-bottom: 2px solid #939393;
-    background: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-
-.login_password {
-    width: 400px;
-    height: 50px;
-    position: absolute;
-    left: 10%;
-    top: 54%;
-    z-index: 1;
-    border: none;
-    border-bottom: 2px solid #939393;
-    background: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-.loginnow {
-    width: 400px;
-    height: 60px;
-    position: absolute;
-    left: 10%;
-    top: 70%;
-    z-index: 1;
-    background-color: #0067B1;
-    color: #ffffff;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 26px;
-    border: none;
-}
-
-.login_register_link {
-    width: 400px;
-    height: 60px;
-    position: absolute;
-    left: 10%;
-    top: 79%;
-    z-index: 1;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 200;
-}
-
-
-/* End of Login page Css*/
 
 /* Start of Home page Css*/
 .background {
@@ -277,7 +258,7 @@ body {
     font-size: 32px;
     font-weight: 200;
     color: #ffffff;
-    background-color: rgba(51,54,48, 0.8);
+
 }
 
 .largeGear {
@@ -694,111 +675,24 @@ body {
 
 .contentmarketholder {
     width: 90%;
-    height: 750px;
-    margin-left: 80px;
+    height: auto;
+    margin-left: 110px;
     float: left;
+    position: relative;
 }
 
 
-.JunkAExtrasAGearMarket {
-    width: auto;
-    height: 50px;
-    text-align: right;
-    color: #ffffff;
-    margin-top: 10px;
-    font-size: 20px;
-    padding-right: 15px;
-    float: left;
-    padding-top: 9px;
-    font-family: 'Aldrich', sans-serif;
-}
-
-.marketSearch {
-    width: 340px;
-    height: 60px;
-    float: right;
-    border: none;
-    border-left: 4px solid #0067B1;
-    border-top: 4px solid #0067B1;
-    border-bottom: 4px solid #0067B1;
-    background: none;
-    padding: 10px;
-    color: #FFEB33;
-    font-family: 'Roboto', sans-serif;
-}
-
-.marketsearchicon {
-    width: 30px;
-    height: 30px;
-    margin-top: 10px;
-    margin-left: 15px;
-}
-
-.marketitemcards {
-    width: 19rem;
-    float: left;
-    margin-left: 30px;
-    margin-top: 25px;
-    border-radius: 0;
-    background-color: #202320;
-}
-
-.marketitemname {
+.perktree {
     width: 100%;
     height: auto;
-    margin-top: 20px;
-    height: 60px;
-    font-size: 26px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: #EAE295;
 }
 
-.updatemarketblock {
-    height: 50px;
-    width: 30%;
-    float: right;
-    background-color: #FFEB33;
-    margin: 0;
-}
-
-.updateitemmarket {
-    width: 30px;
-    height: 30px;
-    margin-top: 10px;
-    margin-left: 3px;
-    float: left;
-}
-
-.itempricemarket {
-    width: 50px;
-    margin-left:3px;
-    text-align:center;
+.perktreeimg {
+    width: 100%;
     height: auto;
-    margin-top: 10px;
-    float: left;
-    height: 30px;
-    font-size: 26px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: #0067B1;
-
 }
 
-.marketupdate {
-    width: 70%;
-    height: 50px;
-    float: right;
-    border: none;
-    border-left: 4px solid #0067B1;
-    border-top: 4px solid #0067B1;
-    border-bottom: 4px solid #0067B1;
-    background: none;
-    padding: 10px;
-    color: #FFEB33;
-    font-family: 'Roboto', sans-serif;
-    background-color: #333630;
-}
+
     /* End of Market page Css*/
 
 
@@ -940,7 +834,6 @@ body {
     margin-left: 5px;
     font-size: 26px;
     color: #EAE295;
-    background-color: black;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -949,7 +842,6 @@ body {
     height: 94%;
     margin-left: 5px;
     margin-top: 5px;
-    background-color: red;
     float: left;
 }
 
@@ -964,7 +856,6 @@ body {
     margin-left: 5px;
     font-size: 26px;
     color: #EAE295;
-    background-color: black;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -972,6 +863,7 @@ body {
 .craftimage{
     width:85px;
     height:85px;
+    margin-top:-15px;
 }
 
 .craftitemname {
@@ -979,6 +871,7 @@ body {
     width: 100%;
     margin-top:5px;
     color: #EAE295;
+    text-align:center;
     font-size: 16px;
     float: left;
     font-family: 'Roboto', sans-serif;
@@ -986,17 +879,58 @@ body {
 
 
 .craftbutton {
-    height: 148px;
+    height: 124px;
     color: #FFEB33;
     font-size:36px;
     width: 15%;
     border: none;
     background-color: #0067B1;
     float: right;
-    margin-top: -23px;
+    margin-right:-15%;
 }
 
 
+.craftverify {
+    height: 25px;
+    color: #ffffff;
+    background-color: #333630;
+    font-size: 16px;
+    width: 15%;
+    text-align:center;
+    border: 3px solid #FFEB33;
+    float: right;
+    margin-top: 124px;
+}
+
+.craftsuccessfail {
+    width: 240px;
+    height: 230px;
+    background-color: #0067B1;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    z-index: 100;
+    border: 5px solid #FFEB33;
+}
+
+.craftmessage {
+    color: #ffffff;
+    font-family: 'Aldrich', sans-serif;
+    float: left;
+    margin-left: 15px;
+    text-align: center;
+    margin-right: 15px;
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 0.9;
+}
+
+.craftedimg{
+width:100%;
+height:auto;
+float:left;
+
+}
 
 
 /* End of Crafting page Css*/
@@ -1006,7 +940,6 @@ body {
     height: 800px;
     float: left;
     margin-top: 80px;
-    background-color: red;
 }
 
 .backpacktabLocation {
@@ -1134,8 +1067,18 @@ body {
 
 .traveltext {
     float: left;
-    margin-top: 52px;
+    margin-top: 32px;
     width:100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.traveltext2 {
+    float: left;
+    margin-top: 30px;
+    width: 100%;
     text-align: center;
     color: #ffffff;
     font-size: 36px;
@@ -1144,7 +1087,7 @@ body {
 
 .traveltextkm {
     float: left;
-    margin-top: 60px;
+    margin-top: 40px;
     width: 100%;
     text-align: center;
     color: #FFEB33;
@@ -1156,23 +1099,23 @@ body {
 .backpacktravel{
     width:32px;
     height:32px;
-    margin-left:4px;
-margin-top:4px;
+    margin-left:2px;
+    margin-top:2px;
 
 }
 
 .basetravel {
     width: 32px;
     height: 32px;
-    margin-left: 4px;
-    margin-top: 4px;
+    margin-left: 2px;
+    margin-top: 2px;
 }
 
 .tenttravel {
     width: 32px;
     height: 32px;
-    margin-left: 4px;
-    margin-top: 4px;
+    margin-left: 2px;
+    margin-top: 2px;
 }
 
 
@@ -1258,4 +1201,5 @@ font-family: 'Roboto', sans-serif;*/
     background-position: center;
     background-size: contain;
 }
+
 

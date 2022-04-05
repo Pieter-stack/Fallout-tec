@@ -48,6 +48,7 @@
 			<img class="invsearchicon" src="~/images/searchicon.png" alt="searchicon"/>
 			</button>
 			<input id="search" class="invSearch" type="text" name="search" value=""/>
+			<input id="searchlocation"  type="hidden" name="location" value=""/>
 			</div>
 			</form>
 
@@ -119,6 +120,11 @@
     height:952px;
 }
 
+
+.navinventory{
+	color:#FFEB33;
+}
+
 </style>
 
 <script>
@@ -154,6 +160,8 @@ $(".Survivaltenttab").click(function () {
 		     $(".basetab").removeClass("locationtabbtn");
 	$(".backpacktab").removeClass("locationtabbtn");
 	}
+
+document.getElementById('searchlocation').setAttribute('value', activeclass);
 
 
 });

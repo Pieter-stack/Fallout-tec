@@ -45,6 +45,7 @@
 	<div class="travel">
 		<h1 class=traveltext>You’ve travelled</h1>
 		<h1 id="travel" class=traveltextkm>6km</h1>
+		<h1 class=traveltext2>since last visited</h1>
 	</div>
 
 	<div class="mapcon">
@@ -134,6 +135,10 @@
   position: absolute;
 }
 
+.navlocation{
+	color:#FFEB33;
+}
+
 
 
 </style>
@@ -163,19 +168,28 @@ $(".Survivaltenttab").click(function () {
 
 
 
-	if(activeclass == 1){
-		 $(".backpacktab").addClass("locationtabbtn");
-		     $(".basetab").removeClass("locationtabbtn");
+if(activeclass == 1){
+	$(".backpacktab").addClass("locationtabbtn");
+    $(".basetab").removeClass("locationtabbtn");
 	$(".Survivaltenttab").removeClass("locationtabbtn");
-	}else if(activeclass == 2){
-		 $(".basetab").addClass("locationtabbtn");
-		     $(".backpacktab").removeClass("locationtabbtn");
+	$(".img-1").css("border", "3px solid #0094FF");
+	$(".img-2").css("border", "3px solid #FFEB33");
+	$(".img-3").css("border", "3px solid #FFEB33");
+}else if(activeclass == 2){
+    $(".basetab").addClass("locationtabbtn");
+    $(".backpacktab").removeClass("locationtabbtn");
 	$(".Survivaltenttab").removeClass("locationtabbtn");
-	}else if(activeclass == 3){
-		 $(".Survivaltenttab").addClass("locationtabbtn");
-		     $(".basetab").removeClass("locationtabbtn");
+	$(".img-1").css("border", "3px solid #FFEB33");
+	$(".img-2").css("border", "3px solid #0094FF");
+	$(".img-3").css("border", "3px solid #FFEB33");
+}else if(activeclass == 3){
+	$(".Survivaltenttab").addClass("locationtabbtn");
+    $(".basetab").removeClass("locationtabbtn");
 	$(".backpacktab").removeClass("locationtabbtn");
-	}
+	$(".img-1").css("border", "3px solid #FFEB33");
+	$(".img-2").css("border", "3px solid #FFEB33");
+	$(".img-3").css("border", "3px solid #0094FF");
+}
 
 
 document.getElementById("travel").innerHTML =

@@ -8,21 +8,22 @@ namespace Fallout_tec.Pages
     public class craftingpageModel : PageModel
     {
         public List<Recipe> allRecipes = new List<Recipe>();
-        public void OnGet()
+
+        public string Message { get; set; } = string.Empty;
+        public bool MessageSuccess { get; set; } = false;
+
+        public void OnGet(string message = "", bool success = true)
         {
             allRecipes = new Recipebook().Recipes;
+
+            Message = message;
+            MessageSuccess = success;
         }
 
-       public IActionResult OnPostCraft(string name, int count, string location, List<string> ingredientsName , List<string> ingredientsCount)
+       public IActionResult OnPostCraft(string name, int count, int location, List<string> ingredientsName , List<string> ingredientsCount, string verify)
         {
             //TODO:call db function
-                
 
-            
-
-            Console.WriteLine("count" + count);
-            Console.WriteLine(name);
-            Console.WriteLine("location" + location);
 
             foreach (var i in ingredientsName)
             {
@@ -35,13 +36,19 @@ namespace Fallout_tec.Pages
 
 
 
-            new Recipebook().CraftRecipe(name, count + 1, location, ingredientsName, ingredientsCount);
-            return RedirectToPage("./craftingpage");
 
-            //skryf function
-            //for(var i = 0l i < name.length; i++{
-            // name[i] same wees as count[i]
-            //}
+            var success = new Recipebook().CraftRecipe(name, count + 1, location, ingredientsName, ingredientsCount, verify);
+
+            if (success)
+            {
+                return Redirect($"./Craftingpage?success=true&message=The item: {name} has been crafted");
+            }
+            else
+            {
+                return Redirect($"./Craftingpage?success=false&message=The item: {name} has not been crafted");
+            }
+
+
 
 
 

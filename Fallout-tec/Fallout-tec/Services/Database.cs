@@ -1,15 +1,21 @@
 ﻿using Fallout_tec.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 
 namespace Fallout_tec.Services
 {
+
     public class Database
     {
 
         //configure to connect to our local host
         private static string serverConfiguration = @"server=localhost;userid=root;password=;database=fallouttec;";
+        private static string adminEmail;
+        private static string adminPassword;
+        private static string adminCode;
 
         //test our db connection by returnbing version of our db
         public static string GetVersion()
@@ -51,6 +57,7 @@ namespace Fallout_tec.Services
                 };
                 results.Add(InvItems);
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
@@ -104,7 +111,7 @@ namespace Fallout_tec.Services
 
 
 
-        public static List<Inventory> GetInputInvSearch(string search)
+        public static List<Inventory> GetInputInvSearch(string search, int location)
         {
             //establish conection
 
@@ -112,12 +119,13 @@ namespace Fallout_tec.Services
             con.Open();
 
             //sql query
-            string sql = "SELECT * FROM inventory WHERE ItemName = @search ";
+            string sql = "SELECT * FROM inventory WHERE ItemName LIKE '" + search + "%' AND Location_id = @location  ";
             Console.WriteLine(sql);
             using var cmd = new MySqlCommand(sql, con);
 
 
             cmd.Parameters.AddWithValue("@search", search);
+            cmd.Parameters.AddWithValue("@location", location);
 
             using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -228,55 +236,250 @@ namespace Fallout_tec.Services
                 };
                 results.Add(Rusers);
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
 
 
 
-
-
-        //register new user
-        public static void RegisterNewUser(string username, string email, string password, string profilepic)
+        public static bool VerifyCode(string verify)
         {
-
-
-            byte[] salt = new byte[128 / 8];
-            using (var rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetNonZeroBytes(salt);
-            }
-            Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-           password: password,
-           salt: salt,
-           prf: KeyDerivationPrf.HMACSHA256,
-           iterationCount: 100000,
-           numBytesRequested: 256 / 8));
-            Console.WriteLine($"Hashed: {hashed}");
-            //https://stackoverflow.com/questions/64407091/check-encrypted-password-on-login-asp-net-core
-
-            //establish conection
             using var con = new MySqlConnection(serverConfiguration);
             con.Open();
 
-
-
-            //sql query
-            string sql = "INSERT INTO `users`(`Username`, `Password`, `Email`, `ProfilePic`, `Caps`) VALUES (@username,@password,@email,@profilepic,1000)";
-            Console.WriteLine(sql);
+            string sql = "SELECT Verify FROM admin WHERE Verify = @verify ";
             using var cmd = new MySqlCommand(sql, con);
 
+            cmd.Parameters.AddWithValue("@verify", verify);
+            using MySqlDataReader reader = cmd.ExecuteReader();
 
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@password", hashed);
-            cmd.Parameters.AddWithValue("@profilepic", profilepic);
+            var databaseverify = "";
 
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
+            while (reader.Read())
+            {
+                databaseverify = reader.GetString(0);
+            }
+            con.Close();
+
+
+
+
+
+            Console.WriteLine("Input verify code --------------" + verify);
+            Console.WriteLine("Database verify code --------------" + databaseverify);
+
+
+
+
+            if (databaseverify == verify)
+            {
+
+                Console.WriteLine("Correct");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect");
+                return false;
+            }
 
         }
+
+
+        public static void SendEmail()
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            string sql = "SELECT SENDemail FROM admin";
+            using var cmd = new MySqlCommand(sql, con);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            var databaseemail = "";
+
+            while (reader.Read())
+            {
+                databaseemail = reader.GetString(0);
+            }
+            con.Close();
+
+            Console.WriteLine("Database verify code --------------" + databaseemail);
+            adminEmail = databaseemail;
+
+
+        }
+
+
+        public static void SendCode()
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            string sql = "SELECT Verify FROM admin";
+            using var cmd = new MySqlCommand(sql, con);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            var databaseverify = "";
+
+            while (reader.Read())
+            {
+                databaseverify = reader.GetString(0);
+            }
+            con.Close();
+
+            Console.WriteLine("Database verify code --------------" + databaseverify);
+            adminCode = databaseverify;
+
+
+        }
+
+
+
+
+
+        public static void SendPassword()
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            string sql = "SELECT SENDpassword FROM admin";
+            using var cmd = new MySqlCommand(sql, con);
+
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            var databasepassword = "";
+
+            while (reader.Read())
+            {
+                databasepassword = reader.GetString(0);
+            }
+            con.Close();
+
+
+            Console.WriteLine("Database verify code --------------" + databasepassword);
+            adminPassword = databasepassword;
+
+
+        }
+
+
+        //register new user
+        public static bool RegisterNewUser(string username, string email, string password)
+        {
+
+            SendEmail();
+            SendPassword();
+            SendCode();
+
+            if (CheckReg(email) == false)
+            {
+
+                //establish conection
+                using var con = new MySqlConnection(serverConfiguration);
+                con.Open();
+
+
+
+                //sql query
+                string sql = "INSERT INTO `users`(`Username`, `Password`, `Email`, `Caps`) VALUES (@username,@password,@email,1000)";
+                Console.WriteLine(sql);
+                using var cmd = new MySqlCommand(sql, con);
+
+
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+
+
+                string getEmail = adminEmail;
+                Console.WriteLine("method 2 string --------------" + getEmail);
+                string getPassword = adminPassword;
+                Console.WriteLine("method 2 string --------------" + getPassword);
+                string getCode = adminCode;
+                Console.WriteLine("method 2 string --------------" + getCode);
+
+                MailMessage message = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    message.From = new MailAddress(getEmail);
+                    message.To.Add(new MailAddress(email));
+                    message.Subject = "Fallout-Tec authentication code";
+                    message.IsBodyHtml = true; //to make message body as html  
+                    message.Body = "Hello your fallout tec access code is:" + getCode;
+                    smtp.Port = 587;
+                    smtp.Host = "smtp.gmail.com"; //for gmail host  
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(getEmail, getPassword);
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Send(message);
+
+
+                return true;
+
+
+            }
+            else
+            {
+                Console.WriteLine("Email Taken");
+                return false;
+            }
+
+        }
+
+
+
+        public static bool CheckReg(string email)
+        {
+            using var con = new MySqlConnection(serverConfiguration);
+            con.Open();
+
+            string sql = "SELECT Email FROM users WHERE Email = @email ";
+            using var cmd = new MySqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("@email", email);
+            using MySqlDataReader reader = cmd.ExecuteReader();
+
+            var databaseemail = "";
+
+            while (reader.Read())
+            {
+                databaseemail = reader.GetString(0);
+            }
+            con.Close();
+
+
+
+
+
+            Console.WriteLine("Input verify code --------------" + email);
+            Console.WriteLine("Database verify code --------------" + databaseemail);
+
+
+
+
+
+            if (databaseemail == email)
+            {
+
+                Console.WriteLine("Correct");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect");
+                return false;
+            }
+
+        }
+
+
 
 
 
@@ -311,43 +514,43 @@ namespace Fallout_tec.Services
 
 
                 var ingredientsName = new List<string>();
-                var ingredientsCount = new List<string>();
+                var ingredientsCount = new List<int>();
                 var ingredientsImage = new List<string>();
 
                 ingredientsName.Add(reader.GetString(7)); //ingredient1
-                ingredientsCount.Add(reader.GetString(8)); //ingredient1Count
+                ingredientsCount.Add(reader.GetInt32(8)); //ingredient1Count
                 ingredientsImage.Add(reader.GetString(9)); //ingredient1Image
 
 
                 ingredientsName.Add(reader.GetString(10)); //ingredient2
-                ingredientsCount.Add(reader.GetString(11)); //ingredient2Count
+                ingredientsCount.Add(reader.GetInt32(11)); //ingredient2Count
                 ingredientsImage.Add(reader.GetString(12)); //ingredient2Image
 
 
                 ingredientsName.Add(reader.GetString(13)); //ingredient3
-                ingredientsCount.Add(reader.GetString(14)); //ingredient3Count
+                ingredientsCount.Add(reader.GetInt32(14)); //ingredient3Count
                 ingredientsImage.Add(reader.GetString(15)); //ingredient3Image
 
 
                 ingredientsName.Add(reader.GetString(16)); //ingredient4
-                ingredientsCount.Add(reader.GetString(17)); //ingredient4Count
+                ingredientsCount.Add(reader.GetInt32(17)); //ingredient4Count
                 ingredientsImage.Add(reader.GetString(18)); //ingredient4Image
 
 
 
                 ingredientsName.Add(reader.GetString(19)); //ingredient5
-                ingredientsCount.Add(reader.GetString(20)); //ingredient5Count
+                ingredientsCount.Add(reader.GetInt32(20)); //ingredient5Count
                 ingredientsImage.Add(reader.GetString(21)); //ingredient5Image
 
 
  
                 ingredientsName.Add(reader.GetString(22)); //ingredient6
-                ingredientsCount.Add(reader.GetString(23)); //ingredient6Count
+                ingredientsCount.Add(reader.GetInt32(23)); //ingredient6Count
                 ingredientsImage.Add(reader.GetString(24)); //ingredient6Image
 
 
                 ingredientsName.Add(reader.GetString(25)); //ingredient7
-                ingredientsCount.Add(reader.GetString(26)); //ingredient7Count
+                ingredientsCount.Add(reader.GetInt32(26)); //ingredient7Count
                 ingredientsImage.Add(reader.GetString(27)); //ingredient7Image
 
                 recipe.IngredientsName = ingredientsName;
@@ -358,44 +561,59 @@ namespace Fallout_tec.Services
                 results.Add(recipe);
                
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
 
 
 
-        public static void CraftRecipe(string name, int newcount, string location, List<string> ingredientsName, List<string> ingredientsCount)
+        public static bool CraftRecipe(string name, int newcount, int location, List<string> ingredientsName, List<string> ingredientsCount,string verify)
         {
+          
 
-            //TODO: Remove the ingredients
-              UpdateItemsCountAfterCraft(ingredientsName, ingredientsCount);
+            if (VerifyCode(verify))
+            {
 
-            using var con = new MySqlConnection(serverConfiguration);
-            con.Open();
+                //TODO: Remove the ingredients
+                UpdateItemsCountAfterCraft(ingredientsName, ingredientsCount, location);
 
-            //sql query
-            string sql = "UPDATE `inventory` SET `ItemQuantity`= @count WHERE `ItemName`= @name  AND Location_id = @location";
-            Console.WriteLine(sql);
-            using var cmd = new MySqlCommand(sql, con);
+                using var con = new MySqlConnection(serverConfiguration);
+                con.Open();
 
-            cmd.Parameters.AddWithValue("@count", newcount);
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.Parameters.AddWithValue("@location", location);
+                //sql query
+                string sql = "UPDATE `inventory` SET `ItemQuantity`= @count WHERE `ItemName`= @name  AND Location_id = @location";
+                Console.WriteLine(sql);
+                using var cmd = new MySqlCommand(sql, con);
 
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@count", newcount);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@location", location);
 
-            //sql query
-            string sql2 = "UPDATE `crafting` SET `CraftQuantity`= @count WHERE `CraftName`= @name  AND LocationId = @location";
-            Console.WriteLine(sql);
-            using var cmd2 = new MySqlCommand(sql2, con);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
 
-            cmd2.Parameters.AddWithValue("@count", newcount);
-            cmd2.Parameters.AddWithValue("@name", name);
-            cmd2.Parameters.AddWithValue("@location", location);
+                //sql query
+                string sql2 = "UPDATE `crafting` SET `CraftQuantity`= @count WHERE `CraftName`= @name  AND LocationId = @location";
+                Console.WriteLine(sql);
+                using var cmd2 = new MySqlCommand(sql2, con);
 
-            cmd2.Prepare();
-            cmd2.ExecuteNonQuery();
+                cmd2.Parameters.AddWithValue("@count", newcount);
+                cmd2.Parameters.AddWithValue("@name", name);
+                cmd2.Parameters.AddWithValue("@location", location);
+
+                cmd2.Prepare();
+                cmd2.ExecuteNonQuery();
+                return true;
+
+            }
+            else
+            {
+                Console.WriteLine("failure");
+                return false;
+            }
+
+
 
 
 
@@ -403,7 +621,8 @@ namespace Fallout_tec.Services
 
 
 
-        public static void UpdateItemsCountAfterCraft(List<string> ingredientsName, List<string> ingredientsCount)
+
+        public static void UpdateItemsCountAfterCraft(List<string> ingredientsName, List<string> ingredientsCount, int location)
         {
             using var con = new MySqlConnection(serverConfiguration);
             con.Open();
@@ -419,14 +638,15 @@ namespace Fallout_tec.Services
                     // name[i] same wees as count[i]
                     //}
 
-                    int currentcount = GetCountOfItems(ingredient);
+                    int currentcount = GetCountOfItems(ingredient, location);
                     //sql query
-                    string sql = "UPDATE `inventory` SET `ItemQuantity` = @count WHERE `ItemName` = @name";
+                    string sql = "UPDATE `inventory` SET `ItemQuantity` = @count WHERE `ItemName` = @name AND Location_id = @location";
                     using var cmd = new MySqlCommand(sql, con);
 
 
                     cmd.Parameters.AddWithValue("@name", ingredient);
                     cmd.Parameters.AddWithValue("@count", currentcount - 1);
+                    cmd.Parameters.AddWithValue("@location", location);
 
                     cmd.Prepare();
                     cmd.ExecuteNonQuery();
@@ -435,15 +655,16 @@ namespace Fallout_tec.Services
         }
 
 
-        public static int GetCountOfItems(string name)
+        public static int GetCountOfItems(string name, int location)
         {
             using var con = new MySqlConnection(serverConfiguration);
             con.Open();
 
-            string sql = "SELECT `ItemQuantity` FROM inventory WHERE ItemName = @name";
+            string sql = "SELECT `ItemQuantity` FROM inventory WHERE ItemName = @name AND Location_id = @location";
             using var cmd = new MySqlCommand(sql, con);
 
             cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@location", location);
 
             using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -453,7 +674,7 @@ namespace Fallout_tec.Services
             {
                 count = reader.GetInt32(0);
             }
-
+            con.Close();
             return count;
         }
 
@@ -498,43 +719,43 @@ namespace Fallout_tec.Services
 
 
                 var ingredientsName = new List<string>();
-                var ingredientsCount = new List<string>();
+                var ingredientsCount = new List<int>();
                 var ingredientsImage = new List<string>();
 
                 ingredientsName.Add(reader.GetString(7)); //ingredient1
-                ingredientsCount.Add(reader.GetString(8)); //ingredient1Count
+                ingredientsCount.Add(reader.GetInt32(8)); //ingredient1Count
                 ingredientsImage.Add(reader.GetString(9)); //ingredient1Image
 
 
                 ingredientsName.Add(reader.GetString(10)); //ingredient2
-                ingredientsCount.Add(reader.GetString(11)); //ingredient2Count
+                ingredientsCount.Add(reader.GetInt32(11)); //ingredient2Count
                 ingredientsImage.Add(reader.GetString(12)); //ingredient2Image
 
 
                 ingredientsName.Add(reader.GetString(13)); //ingredient3
-                ingredientsCount.Add(reader.GetString(14)); //ingredient3Count
+                ingredientsCount.Add(reader.GetInt32(14)); //ingredient3Count
                 ingredientsImage.Add(reader.GetString(15)); //ingredient3Image
 
 
                 ingredientsName.Add(reader.GetString(16)); //ingredient4
-                ingredientsCount.Add(reader.GetString(17)); //ingredient4Count
+                ingredientsCount.Add(reader.GetInt32(17)); //ingredient4Count
                 ingredientsImage.Add(reader.GetString(18)); //ingredient4Image
 
 
 
                 ingredientsName.Add(reader.GetString(19)); //ingredient5
-                ingredientsCount.Add(reader.GetString(20)); //ingredient5Count
+                ingredientsCount.Add(reader.GetInt32(20)); //ingredient5Count
                 ingredientsImage.Add(reader.GetString(21)); //ingredient5Image
 
 
 
                 ingredientsName.Add(reader.GetString(22)); //ingredient6
-                ingredientsCount.Add(reader.GetString(23)); //ingredient6Count
+                ingredientsCount.Add(reader.GetInt32(23)); //ingredient6Count
                 ingredientsImage.Add(reader.GetString(24)); //ingredient6Image
 
 
                 ingredientsName.Add(reader.GetString(25)); //ingredient7
-                ingredientsCount.Add(reader.GetString(26)); //ingredient7Count
+                ingredientsCount.Add(reader.GetInt32(26)); //ingredient7Count
                 ingredientsImage.Add(reader.GetString(27)); //ingredient7Image
 
                 recipe.IngredientsName = ingredientsName;
@@ -545,6 +766,7 @@ namespace Fallout_tec.Services
                 results.Add(recipe);
 
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
 
@@ -581,6 +803,7 @@ namespace Fallout_tec.Services
                 };
                 results.Add(InvItems);
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
@@ -615,6 +838,7 @@ namespace Fallout_tec.Services
                 };
                 results.Add(InvItems);
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
@@ -649,9 +873,12 @@ namespace Fallout_tec.Services
                 };
                 results.Add(InvItems);
             }
+            con.Close();
             //return TagHelperServicesExtensions final results after adding
             return results;
         }
+
+
 
 
 

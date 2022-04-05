@@ -30,10 +30,11 @@ namespace Fallout_tec.Pages
             //redirect
             return RedirectToPage("./inventorypage");
         }
-        public void OnPostSearch(string search)
+        public void OnPostSearch(string search, int location)
         {
             Console.WriteLine($"{search}");
-            InventoryItems = Database.GetInputInvSearch(search);
+            Console.WriteLine($"{location}");
+            InventoryItems = Database.GetInputInvSearch(search, location);
             //search must be refined to only search for letters and also name needs tro be static after search
 
 

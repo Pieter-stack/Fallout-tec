@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model Fallout_tec.Pages.homepageModel
 @{
 }
@@ -15,6 +15,7 @@
 
 <!--Frontend-->
 <div class="background">
+	<div class="background-dark">
 	<h1 class="aboutUs">About <br>Fallout-Tec</h1>
 	<h3 class="aboutUsDescription">Fallout-Tec was founded by Pieter Venter to aid all <br> wasteland adventurers of Fallout 76. We are <br> passionate about the community and want to aid <br> all users to have a better ingame experience.</h3>
 	<img class="largeGear" src="~/images/largeYellowGear.png" alt="gear"/> 
@@ -23,24 +24,53 @@
 	<div class="craftbanner" id="craftbanner">
 	<img class="bannerimg" src="~/images/craftbanner.png" alt="banner"/> 
 	<h1 class="craftbanHeading">Craft to <br>your hearts <br>desire</h1>
-	<button class=btncraftban>Get Crafting Now</button>
+	<a asp-area="" asp-page="/Craftingpage"><button class=btncraftban >Get Crafting Now</button></a>
 	</div>
 	<div class="buildbanner">
 	<img class="bannerimg" src="~/images/buildbanner.png" alt="banner"/> 
 	<h1 class="buildbanHeading">Build<br> Anywhere</h1>
-		<button class=btnbuildban>Explore Locations</button>
+		<a asp-area="" asp-page="/Locationpage"><button class="btnbuildban"  >Explore Locations </button></a>
 	</div>
 		<img class="LargeYellowGear" src="~/images/largeYellowGear.png" alt="gear"/> 
 	<div class="invbanner">
 	<img class="bannerimg" src="~/images/invbanner.png" alt="banner"/> 
 	<h1 class="invbanHeading">Store <br> Anything</h1>
-		<button class=btninvban>Check Inventory</button>
+		<a asp-area="" asp-page="/Inventorypage"><button class=btninvban>Check Inventory</button></a>
 	</div>
 	<h1 class="contactUs">Contact <br> Us</h1>
 	<h1 class="contactUsDetails">fallout-tec@gmail.com<br> 0825974456</h1>
 </div>
+</div>
+<style>
+
+.background{
+	    background-position: center;
+		width:100%;
+    background-image: url(../images/image3.jpg);
+    background-attachment: fixed;
+
+}
+
+.background-dark{
+    width: 100%;
+    margin-top: -21px;
+    height: 5800px;
+
+	background-color: rgba(0, 0, 0, 0.6)
+}
+
+.navhome{
+	color:#FFEB33;
+}
+
+</style>
 
 <script>
+
+	var images = ['image1.jpg', 'image2.webp', 'image3.jpg'];
+$('.background').css({'background-image': 'url(images/' + images[Math.floor(Math.random() * images.length)] + ')'});
+
+console.log()
 
 
 $(window).scroll(function() {

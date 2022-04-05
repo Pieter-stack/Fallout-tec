@@ -8,25 +8,35 @@ namespace Fallout_tec.Pages
     public class RegisterpageModel : PageModel
     {
 
+
+
         public List<Users> RegUsers = new List<Users>();
-        public void OnGet()
+        public string Message { get; set; } = string.Empty;
+        public bool MessageSuccess { get; set; } = false;
+        public void OnGet(string message = "", bool success = true)
         {
             RegUsers = Database.GetUsers();
+
+            Message = message;
+            MessageSuccess = success;
+
         }
-        public IActionResult OnPostRegister(string username, string email, string password, string profilepic)
+
+
+        public IActionResult OnPostRegister(string username, string email, string password)
         {
-            //http://csharp.net-informations.com/file/csharp-filestream-class.htm
-            //https://www.completecsharptutorial.com/basic/c-filestream-tutorial-with-programming-example.php
-            //    FileStream f = new FileStream("~images/", FileMode.OpenOrCreate);//creating file stream  
-            //   f.Write(profilepic);
-            //   f.Close();//closing stream  
 
-            //  Console.WriteLine(profilepic);
+            var success = Database.RegisterNewUser(username, email, password);
 
-            Database.RegisterNewUser(username, email, password, profilepic);
+            if (success)
+            {
+                return Redirect($"./InventoryPage?success=true&message={username} has been registered");
+            }
+            else
+            {
+                return Redirect($"./Registerpage?success=false&message=The email: {email} is already registered");
+            }
 
-            //redirect
-            return RedirectToPage("./inventorypage");
         }
     }
 

@@ -16,90 +16,62 @@
 
 <!--Frontend-->
 <div class="staticbackground">
-			<form method="post" asp-page-handler="location" >
-		  <input id="station"   name="station" type="hidden" value="" >
-		  <input id="station2"  name="location" type="hidden" value="" >
+	<form method="post" asp-page-handler="location" >
+		 <input id="station"  name="station" type="hidden" value="" >
+		 <input id="station2"  name="location" type="hidden" value="" >
 	<div class="craftingbenchcon">
 
-		<div class="Workbench Armour" onclick="document.forms[0].submit()">
+		<div class="Workbench Armour">
 			<img class="Workbenchimg" src="~/images/ArmourWorkbench.png" alt="Workbenchimg" /> 
-			 <input id="station"  name="station" type="hidden" value="ArmourWorkbench" >
 			<h3 class="workbenchname">Armour Workbench</h3>
 		</div>
-		<div class="Workbench Weapons" onclick="document.forms[0].submit()">
+		<div class="Workbench Weapons">
 			<img class="Workbenchimg" src="~/images/WeaponsWorkbench.png" alt="Workbenchimg"/> 
-			 <input id="station"  name="station" type="hidden" value="WeaponsWorkbench" >
 			<h3 class="workbenchname">Weapons Workbench</h3>
 		</div>
-		<div class="Workbench Tinker" onclick="document.forms[0].submit()">
+		<div class="Workbench Tinker" >
 			<img class="Workbenchimg" src="~/images/TinkerWorkbench.png" alt="Workbenchimg"/>
-			 <input id="station"  name="station" type="hidden" value="TinkerWorkbench" >
 			<h3 class="workbenchname">Tinker Workbench</h3>
 		</div>
-		<div class="Workbench Chemistry" onclick="document.forms[0].submit()">
+		<div class="Workbench Chemistry">
 			<img class="Workbenchimg" src="~/images/ChemestryStation.png" alt="Workbenchimg"/>
-			 <input id="station"  name="station" type="hidden" value="ChemistryStation" >
 			<h3 class="workbenchname">Chemestry Station</h3>
 		</div>
-		<div class="Workbench Cooking" onclick="document.forms[0].submit()">
+		<div class="Workbench Cooking">
 			<img class="Workbenchimg" src="~/images/CookingStation.png" alt="Workbenchimg"/> 
-			 <input id="station"  name="station" type="hidden" value="CookingStation" >
 			<h3 class="workbenchname">Cooking Station</h3>
 		</div>
-	    <div class="Workbench Brewing" onclick="document.forms[0].submit()">
+	    <div class="Workbench Brewing">
 			<img class="Workbenchimg" src="~/images/BrewingStation.png" alt="Workbenchimg"/> 
-			 <input id="station"  name="station" type="hidden" value="BrewingStation" >
 			<h3 class="workbenchname">Brewing Station</h3>
 		</div>
 	</div>
 
 
+<div class="locationTabCrafting ">
 
 
-
-
-
-
-	<div class="locationTabCrafting ">
-
-
-		<div  class="backpacktabCrafting locationtabbtn"  onclick="document.forms[0].submit()">
+		<div  class="backpacktabCrafting locationtabbtn"  >
 		 <input id=radio1 name=location type=radio value=1><label for=radio1>Backpack</label>
 			<img class="locationimg" src="~/images/backpack.webp" alt="location"/> 		
 		</div>
 
 
-		<div   class="basetabCrafting " onclick="document.forms[0].submit()">
+		<div   class="basetabCrafting " >
 		 <input id=radio2 name=location type=radio value=2><label for=radio2>Base</label>
 			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
 			
 		</div>
 
-		<div  class="SurvivaltenttabCrafting " onclick="document.forms[0].submit()">
+		<div  class="SurvivaltenttabCrafting " >
 		 <input id=radio3 name=location type=radio value=3><label for=radio3>Survival Tent</label>
 			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
 		
 		</div>
 		</div>
-	</form>
+   </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<div class="Craftingcon">
+   <div class="Craftingcon">
 		<h2 class="workbenchitemtypes">CraftType</h2>
 					@foreach(var recipe in Model.allRecipes){
 		<div class="craftitemcon">
@@ -123,25 +95,21 @@
 						}
 
 			<div class="craftitemmaterial">
+				<img src="~/dbimages/@recipe.IngredientsImage[i]" class="card-img-top craftimage" alt="craftimage" style="margin-top:2px; margin-left:25px;">
 
+				<h3 class="craftitemname">@recipe.IngredientsName[i]</h3>					
 
-						<h3 class="craftitemname">@recipe.IngredientsName[i]</h3>					
+				<h3 class="craftitemname">(@recipe.IngredientsCount[i])</h3>	
 
-
-
-						<h3 class="craftitemname">@recipe.IngredientsCount[i]</h3>	
-
-
-						<img src="~/dbimages/@recipe.IngredientsImage[i]" class="card-img-top craftimage" alt="craftimage" style="margin-top:10px;">	
+					
 				
 
-
-				
-				
 			</div>
 
-
-													
+			     }
+																			
+					}
+						@{
 								if(recipe.IsCraftable()){
 									<form
 									method="post"
@@ -154,14 +122,14 @@
 										@{
 
 											@for(var j = 0; j < recipe.IngredientsName.Count(); j++){
-												if(recipe.IngredientsName[i] != "")
+												if(recipe.IngredientsName[j] != "")
 												{
 													<input type="hidden" name="ingredientsName[]" value="@recipe.IngredientsName[j]"/>
 												}
 											}
 										   @for(var k = 0; k < recipe.IngredientsCount.Count(); k++){
 
-											if(recipe.IngredientsCount[k] != "0")
+											if(recipe.IngredientsCount[k] != 0)
 												{
 													<input type="hidden" name="ingredientsCount[]" value="@recipe.IngredientsCount[k]"/>
 												}
@@ -169,30 +137,48 @@
 											}
 		
 									}
-									
+									<input type="text" class="craftverify" name="verify" placeholder="cheatcode" />
 									<input class="craftbutton" type="submit" value="Craft"/>
 									</form>	
-					
-
-
-
-				
-
-
-									}
 								}
 
-}
-
-
-
-
+		                }
 		</div>
 		}
 	</div>
 
 
 </div>
+
+@{
+		if(Model.Message != "")
+		{
+			if (Model.MessageSuccess)
+			{
+				<div class="craftsuccessfail">
+				<img class="craftedimg" src="~/images/craftingsuccess.jpg" alt="craftsuccess"/> 
+				<h1 class="craftmessage">@Model.Message</h1>
+				</div>
+
+
+
+			}
+			else
+			{
+
+				<div class="craftsuccessfail">
+				<img class="craftedimg" src="~/images/craftingfail.jpg" alt="craftfail"/> 
+				<h1 class="craftmessage">@Model.Message</h1>
+				</div>
+
+				
+			
+
+			}
+			
+		}
+
+	}
 
 
 <style>
@@ -218,6 +204,11 @@
 #radio3 {
     display: none;
     /*visibility: hidden;*/
+}
+
+
+.navcrafting{
+	color:#FFEB33;
 }
 </style>
 
@@ -256,27 +247,45 @@ $(document).ready(function() {
 
 
 $(".Weapons").click(function () {
-	localStorage.setItem("station", "WeaponsWorkbench");  
+	localStorage.setItem("station", "WeaponsWorkbench");
+	document.getElementById('station').setAttribute('value', "WeaponsWorkbench");
+	document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 $(".Tinker").click(function () {
-	localStorage.setItem("station", "TinkerWorkbench");  
+	localStorage.setItem("station", "TinkerWorkbench"); 
+	document.getElementById('station').setAttribute('value', "TinkerWorkbench");
+	document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 $(".Chemistry").click(function () {
-	localStorage.setItem("station", "ChemistryStation");  
+	localStorage.setItem("station", "ChemistryStation");
+	document.getElementById('station').setAttribute('value', "ChemistryStation");
+	document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 $(".Cooking").click(function () {
-	localStorage.setItem("station", "CookingStation");  
+	localStorage.setItem("station", "CookingStation"); 
+	document.getElementById('station').setAttribute('value', "CookingStation");
+    document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 $(".Brewing").click(function () {
-	localStorage.setItem("station", "BrewingStation");  
+	localStorage.setItem("station", "BrewingStation"); 
+	document.getElementById('station').setAttribute('value', "BrewingStation");
+    document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 $(".Armour").click(function () {
-	localStorage.setItem("station", "ArmourWorkbench");  
+	localStorage.setItem("station", "ArmourWorkbench"); 
+	document.getElementById('station').setAttribute('value',"ArmourWorkbench");
+	document.getElementById('station2').setAttribute('value', activeclass);
+	document.forms[0].submit()
 });
 
 	let getstation = localStorage.getItem("station");
@@ -293,7 +302,7 @@ $(".Armour").click(function () {
 	$(".Brewing").css("opacity", "30%");
 	$(".Armour").css("opacity", "100%");
 
-	document.getElementById('station').setAttribute('value',"ArmourWorkbench");
+
 
 	}else if(getstation == "WeaponsWorkbench"){
     $(".Weapons").css("opacity", "100%");
@@ -303,7 +312,7 @@ $(".Armour").click(function () {
 	$(".Brewing").css("opacity", "30%");
 	$(".Armour").css("opacity", "30%");
 
-		document.getElementById('station').setAttribute('value', "WeaponsWorkbench");
+
 
 	}else if(getstation == "TinkerWorkbench"){
     $(".Weapons").css("opacity", "30%");
@@ -312,7 +321,7 @@ $(".Armour").click(function () {
 	$(".Cooking").css("opacity", "30%");
 	$(".Brewing").css("opacity", "30%");
 	$(".Armour").css("opacity", "30%");
-		document.getElementById('station').setAttribute('value', "TinkerWorkbench");
+
 
 	}else if(getstation == "ChemistryStation"){
 	$(".Weapons").css("opacity", "30%");
@@ -321,7 +330,7 @@ $(".Armour").click(function () {
 	$(".Cooking").css("opacity", "30%");
 	$(".Brewing").css("opacity", "30%");
 	$(".Armour").css("opacity", "30%");
-		document.getElementById('station').setAttribute('value', "ChemistryStation");
+
 
 	}else if(getstation == "CookingStation"){
     $(".Weapons").css("opacity", "30%");
@@ -330,7 +339,7 @@ $(".Armour").click(function () {
 	$(".Cooking").css("opacity", "100%");
 	$(".Brewing").css("opacity", "30%");
 	$(".Armour").css("opacity", "30%");
-		document.getElementById('station').setAttribute('value', "CookingStation");
+
 
 	}else if(getstation == "BrewingStation"){
     $(".Weapons").css("opacity", "30%");
@@ -339,13 +348,17 @@ $(".Armour").click(function () {
 	$(".Cooking").css("opacity", "30%");
 	$(".Brewing").css("opacity", "100%");
 	$(".Armour").css("opacity", "30%");
-		document.getElementById('station').setAttribute('value', "BrewingStation");
+
+
 
 	}
 
 
 
-
+var effectTimer = setTimeout(function() {
+    $('.craftsuccessfail').slideUp(1000);
+	    $('.craftsuccessfail').animate({"margin-left": '-=250'});
+}, 5000);
 
 
 
@@ -353,16 +366,25 @@ $(".Armour").click(function () {
 
 	//onclick for location buttons/ for styling
 $(".backpacktabCrafting").click(function () {
-	localStorage.setItem("active", 1);  
+	localStorage.setItem("active", 1); 
+	document.getElementById('station2').setAttribute('value', 1);
+	document.getElementById('station').setAttribute('value', getstation);
+	document.forms[0].submit()
 
 });
 	//onclick for location buttons/ for styling
 $(".basetabCrafting").click(function () {
-	localStorage.setItem("active", 2);  
+	localStorage.setItem("active", 2); 
+	document.getElementById('station2').setAttribute('value', 2);
+	document.getElementById('station').setAttribute('value', getstation);
+	document.forms[0].submit()
 });
 	//onclick for location buttons/ for styling
 $(".SurvivaltenttabCrafting").click(function () {
-	localStorage.setItem("active", 3);  
+	localStorage.setItem("active", 3); 
+	document.getElementById('station2').setAttribute('value',3);
+	document.getElementById('station').setAttribute('value', getstation);
+	document.forms[0].submit()
 });
 
 	let activeclass = localStorage.getItem("active");
@@ -374,17 +396,17 @@ $(".SurvivaltenttabCrafting").click(function () {
 		 $(".backpacktabCrafting").addClass("locationtabbtn");
 		     $(".basetabCrafting").removeClass("locationtabbtn");
 	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
-		document.getElementById('station2').setAttribute('value', 1);
+
 	}else if(activeclass == 2){
 		 $(".basetabCrafting").addClass("locationtabbtn");
 		     $(".backpacktabCrafting").removeClass("locationtabbtn");
 	$(".SurvivaltenttabCrafting").removeClass("locationtabbtn");
-			document.getElementById('station2').setAttribute('value', 2);
+
 	}else if(activeclass == 3){
 		 $(".SurvivaltenttabCrafting").addClass("locationtabbtn");
 		     $(".basetabCrafting").removeClass("locationtabbtn");
 	$(".backpacktabCrafting").removeClass("locationtabbtn");
-			document.getElementById('station2').setAttribute('value',3);
+		
 	}
 
 });

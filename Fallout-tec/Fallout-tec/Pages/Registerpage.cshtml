@@ -8,7 +8,9 @@
 <head><script href="~css/site.css"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
 integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" 
-crossorigin="anonymous"></head>
+crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 
 <!--Frontend-->
 <img class="backgroundimg" src="~/images/background.png" alt="background"/>  
@@ -19,26 +21,53 @@ crossorigin="anonymous"></head>
 <!--register page form and pfp data-->
 <h3 class="registerinfo">Create your free account now.</h3>
 
+
 <form method="post" asp-page-handler="Register">
-<!--add profile image-->
-<div class="profile_preview">
-        <img id="preview_image" src="~/images/placeholder.png">
-        </div>
-        <div class='file_reg'>
-        <input style="display:none;" name="profilepic" id="u_profile" type="file" onchange="previewFile(this);" >
-                <label class='choose' for="u_profile"><i class="fas fa-pen"></i></label>
-</div>
+
+
+
+
 
 <!--Input field collect data-->
 
-<input class="reg_username" name= "username" type="text" placeholder="Username"/>
-<input class="reg_email" name = "email" type="email" placeholder="Email"/>
-<input class="reg_password" name = "password" type="password" placeholder="Password"/>
+<input class="reg_username" name= "username" type="text" placeholder="Username" required/>
+<input class="reg_email" name = "email" type="email" placeholder="Email" required/>
+<input class="reg_password" name = "password" type="password" placeholder="Password" required/>
+
+	@{
+		if(Model.Message != "")
+		{
+			if (Model.MessageSuccess)
+			{
+				<div class="alert alert-success" >@Model.Message 
+				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				 </div>
+
+
+
+			}
+			else
+			{
+
+
+				<div class="popup">
+					<i id="closebutton" class="glyphicon glyphicon-remove" style="font-size:26px; color:red;"></i>
+					<img class="regfail" src="~/images/registerfail.png" alt="regfail"/> 
+					<h1 class="regmessage">@Model.Message</h1>
+				</div>
+
+
+			}
+			
+		}
+
+	}
+
 
 <!--submit btn & go to login href-->
 <button class="registernow">Register Now</button>
 </form>
-<h5 class="register_login_link">Already have an account? <a style="text-decoration:none;" asp-area="" asp-page="/Loginpage"><strong style="color:#0067B1;"> Log in</strong></a></h5>
+<h5 class="register_login_link">Already have an account? <a style="text-decoration:none;" asp-area="" asp-page="/Inventorypage"><strong style="color:#0067B1;"> Go to Inventory</strong></a></h5>
 
 							
 						
@@ -51,31 +80,26 @@ crossorigin="anonymous"></head>
 }
 
 html{
-    overflow:hidden;
+	overflow:hidden;
 }
+
+.navregister{
+	color:#FFEB33;
+}
+
+
 
 </style>
 
 <script>
 //remove header from page
 document.getElementsByClassName('navbar')[0].remove();
+
+
+$( "#closebutton" ).on( "click", function() {
+   $(".popup").css('visibility','hidden');
+});
  
 
 </script>
 
-<script>
-
-    //change profile preview
-        function previewFile(input){
-            var file = $("input[type=file]").get(0).files[0];
-            if(file){
-                var reader = new FileReader();
-                reader.onload = function(){
-                    $("#preview_image").attr("src", reader.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-
-</script>

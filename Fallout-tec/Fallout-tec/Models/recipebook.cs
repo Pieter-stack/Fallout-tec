@@ -13,10 +13,12 @@ namespace Fallout_tec.Models
             Recipes = Database.GetAllRecipes();
         }
 
-       public void CraftRecipe(string name, int count, string location, List<string> ingredientsName, List<string> ingredientsCount)
+       public bool CraftRecipe(string name, int count, int location, List<string> ingredientsName, List<string> ingredientsCount, string verify)
         {
             //TODO: call the database function
-           Database.CraftRecipe(name, count, location, ingredientsName, ingredientsCount);
+      return  Database.CraftRecipe(name, count, location, ingredientsName, ingredientsCount, verify);
+
+
 
 
         }

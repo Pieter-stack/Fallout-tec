@@ -24,7 +24,7 @@ namespace Fallout_tec.Models
 
 
         public List<string> IngredientsName { get; set; }
-        public List<string> IngredientsCount { get; set; }
+        public List<int> IngredientsCount { get; set; }
         public List<string> IngredientsImage { get; set; }
 
 
@@ -36,43 +36,61 @@ namespace Fallout_tec.Models
         {
             //TODO: check if we have all the required resources
             //setup empty dictionary  which will contain item and number
+            /*
+                            var map = new Dictionary<string, int>();
 
-                var map = new Dictionary<string, int>();
 
+                        for (int i = 0; i < IngredientsName.Count(); i++)
+                        {
+                            if (IngredientsName[i] != "")
+                            {
+                                int count;
+                                if (map.TryGetValue(IngredientsName[i], out count))//have we added this ingredient before
+                                {
+                                    map[IngredientsName[i]] += IngredientsCount[i]; //increment count
+                                }
+                                else //not added ingredient to dictionary
+                                {
+                                    map.Add(IngredientsName[i], 1);  //add the block to it
+                                }
+                            }*/
+            // }
 
-            for (int i = 0; i < IngredientsName.Count; i++)
+            bool result = true;
+            var inventory = new Materials();
+            for (int i = 0; i < IngredientsName.Count(); i++)
             {
                 if (IngredientsName[i] != "")
-                {
-                    int count;
-                    if (map.TryGetValue(IngredientsName[i], out count))//have we added this ingredient before
+                { 
+                    if (IngredientsCount[i] > inventory.GetCount(IngredientsName[i]))
                     {
-                        map[IngredientsName[i]] += 1; //increment count
+                        result = false;
+                        Console.WriteLine(result);
                     }
-                    else //not added ingredient to dictionary
-                    {
-                        map.Add(IngredientsName[i], 1);  //add the block to it
-                    }
-                }
             }
 
-            //default response
-            bool result = true;
-            //go create our inventory that we check
-            var inventory = new Materials();
-            //loop through our ingredient dictionary
-            foreach (var pair in map)
-            {
-                Console.WriteLine(pair);
-                if (pair.Value > inventory.GetCount(pair.Key))//if amount we need ids less than what we have craftable faalse
-                {
-                    result = false;
-                }
             }
-
             return result;
-        }
 
+
+
+            /*   //default response
+               bool result = true;
+               //go create our inventory that we check
+
+               //loop through our ingredient dictionary
+               foreach (var pair in map)
+               {
+                   Console.WriteLine(pair);
+                   if (pair.Value > inventory.GetCount(pair.Key))//if amount we need ids less than what we have craftable faalse
+                   {
+                       result = false;
+                   }
+               }
+
+               return result;
+           }*/
+        }
 
 
      
