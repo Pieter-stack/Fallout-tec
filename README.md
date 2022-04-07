@@ -22,7 +22,7 @@
       <a href="https://github.com/Pieter-stack/Fallout-tec"><strong>Explore the docs »</strong></a>
       <br />
       <br />
-      <a href="add video">View Demo</a>
+      <a href="https://www.youtube.com/watch?v=zE0Xuujmcd8">View Demo</a>
        ·
        <a href="https://github.com/Pieter-stack/Fallout-tec/issues">Report Bug</a>
        ·
@@ -224,7 +224,7 @@ I struggled with some functionality due to how much items I have in my database 
 
 To see the promotional video, click below:
 
-[View Promotional Video](https://youtu.be/bE_zQGm_tHk)
+[View Promotional Video](https://www.youtube.com/watch?v=zE0Xuujmcd8)
 
 <!-- ROADMAP -->
 ## Roadmap
