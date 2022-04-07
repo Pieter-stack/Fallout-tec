@@ -11,7 +11,7 @@
 </br>
    
   <a href="https://github.com/Pieter-stack/Fallout-tec">
-    <img src="Images/Icon.png" alt="Logo" width="140" height="140">
+    <img src="Images/Icon.png" alt="Logo" width="180" height="140">
   </a>
   
   <h3 align="center">Fallout-tec</h3>
@@ -125,13 +125,13 @@ private static string serverConfiguration = @"server=localhost;userid=USERID;pas
 
 ### Register page
 
-![image10][image10]
+![image2][image2]
 
 Register with Fallout-Tec to receive your S.P.E.C.I.A.L authentication code.
 
 ### Home page
 
-![image2][image2]
+![image3][image3]
 
 Store Anything
 Build Anywhere
@@ -139,25 +139,25 @@ Craft to your hearts desire
 
 ### Inventory page
 
-![image4][image4]
+![image10][image10]
 
 Store all your raw materials, craftable and extras, sort between the locations and search for any item within the inventory
 
 ### Crafting Page
 
-![image3][image3]
+![image6][image6]
 
 Craft over 100 items , within 3 separate locations and 5 workstations to craft a wide variaty of items
 
 ### Location page
 
-![image6][image6]
+![image5][image5]
 
 See how far you've travelled, specific pinpoints of all 3 your locations on the map, and see a overview of your items in your inventory at any location.
 
 ### Perks page
 
-![image5][image5]
+![image4][image4]
 
 Explore and unlock perks to see a new wasteland full of unique abilities
 
@@ -184,7 +184,7 @@ The `Conceptual Process` is the set of actions, activities and research that was
 
 ![image7][image7]
 
-### erd
+### ERD
 
 ![image8][image8]
 
