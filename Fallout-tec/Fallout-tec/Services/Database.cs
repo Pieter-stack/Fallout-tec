@@ -39,6 +39,7 @@ namespace Fallout_tec.Services
             using var cmd = new MySqlCommand(sql, con); // perform this new command which is sql and do it in the con established
 
             //creates an instance of our command result that can be read in c#
+
             using MySqlDataReader reader = cmd.ExecuteReader();
 
             //init our return list
@@ -151,20 +152,6 @@ namespace Fallout_tec.Services
             return results;
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

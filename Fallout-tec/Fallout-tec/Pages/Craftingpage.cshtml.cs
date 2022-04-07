@@ -9,6 +9,7 @@ namespace Fallout_tec.Pages
     {
         public List<Recipe> allRecipes = new List<Recipe>();
 
+
         public string Message { get; set; } = string.Empty;
         public bool MessageSuccess { get; set; } = false;
 
@@ -20,9 +21,11 @@ namespace Fallout_tec.Pages
             MessageSuccess = success;
         }
 
-       public IActionResult OnPostCraft(string name, int count, int location, List<string> ingredientsName , List<string> ingredientsCount, string verify)
+       public void OnPostCraft(string name, int count, int location, string station, List<string> ingredientsName , List<string> ingredientsCount, string verify )
         {
             //TODO:call db function
+
+          
 
 
             foreach (var i in ingredientsName)
@@ -41,17 +44,27 @@ namespace Fallout_tec.Pages
 
             if (success)
             {
-                return Redirect($"./Craftingpage?success=true&message=The item: {name} has been crafted");
+                Message = $"The item: {name} has been crafted";
+                MessageSuccess = true;
+
+
             }
             else
             {
-                return Redirect($"./Craftingpage?success=false&message=The item: {name} has not been crafted");
+               
+                MessageSuccess = false;
+                Message = $"The item: {name} has been crafted";
             }
 
+            Console.WriteLine("loc" + location);
+            Console.WriteLine("sta" + station);
+            allRecipes = Database.GetCraftingPageSearch(location, station);
 
-
-
-
+            foreach(var i in allRecipes)
+            {
+                Console.WriteLine("allrecipes" + i.CraftName);
+            }
+            
 
         }
         public void OnPostLocation(int location, string station)

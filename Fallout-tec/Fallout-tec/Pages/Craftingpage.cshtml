@@ -52,29 +52,30 @@
 
 
 		<div  class="backpacktabCrafting locationtabbtn"  >
-		 <input id=radio1 name=location type=radio value=1><label for=radio1>Backpack</label>
+		 <input id=radio1 name=location type=radio value=1><label style="width:80%; height:100%;" for=radio1>Backpack</label>
 			<img class="locationimg" src="~/images/backpack.webp" alt="location"/> 		
 		</div>
 
 
 		<div   class="basetabCrafting " >
-		 <input id=radio2 name=location type=radio value=2><label for=radio2>Base</label>
+		 <input id=radio2 name=location type=radio value=2><label style="width:80%; height:100%;" for=radio2>Base</label>
 			<img class="locationimg" src="~/images/base.webp" alt="location"/>  
 			
 		</div>
 
 		<div  class="SurvivaltenttabCrafting " >
-		 <input id=radio3 name=location type=radio value=3><label for=radio3>Survival Tent</label>
+		 <input id=radio3 name=location type=radio value=3><label style="width:80%; height:100%;" for=radio3>Survival Tent</label>
 			<img class="locationimg" src="~/images/survivaltent.webp" alt="location"/>  
 		
 		</div>
 		</div>
    </form>
 
-   <div class="Craftingcon">
-		<h2 class="workbenchitemtypes">CraftType</h2>
-					@foreach(var recipe in Model.allRecipes){
-		<div class="craftitemcon">
+   <div class="Craftingcon" >
+
+
+			   @foreach(var recipe in Model.allRecipes){			
+		<div class="craftitemcon"> 
 
 			<div class="craftitem">
 				<!--todo: add image and name h2 tag-->
@@ -99,7 +100,7 @@
 
 				<h3 class="craftitemname">@recipe.IngredientsName[i]</h3>					
 
-				<h3 class="craftitemname">(@recipe.IngredientsCount[i])</h3>	
+				<h3 class="craftitemname2">(@recipe.IngredientsCount[i])</h3>	
 
 					
 				
@@ -117,7 +118,9 @@
 									asp-route-name="@recipe.CraftName"
 									asp-route-count="@recipe.Count"
 									asp-route-location="@recipe.LocationId"
+									asp-route-station="@recipe.CraftStation"
 									>
+
 									
 										@{
 
@@ -181,6 +184,8 @@
 	}
 
 
+
+
 <style>
 	.container-fluid {
     margin: 0px;
@@ -188,6 +193,9 @@
     margin-bottom:-20px;
     width: 100%;
     height:952px;
+}
+html{
+	overflow:hidden;
 }
 
 
@@ -210,6 +218,15 @@
 .navcrafting{
 	color:#FFEB33;
 }
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ffffff;
+  opacity: 1; /* Firefox */
+}
+
+
+
 </style>
 
 
@@ -251,6 +268,9 @@ $(".Weapons").click(function () {
 	document.getElementById('station').setAttribute('value', "WeaponsWorkbench");
 	document.getElementById('station2').setAttribute('value', activeclass);
 	document.forms[0].submit()
+
+
+	
 });
 
 $(".Tinker").click(function () {

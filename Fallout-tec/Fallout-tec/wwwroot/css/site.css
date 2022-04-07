@@ -65,6 +65,7 @@ body {
 /*Start of Login and Register page shared Css*/
 .backgroundimg {
     width: 102%;
+    margin-left:-20px;
     height: 1080px;
 }
 
@@ -252,7 +253,7 @@ margin-right:30%;
     height: auto;
     position: absolute;
     left: 60%;
-    top: 6%;
+    top: 7%;
     z-index: 2;
     font-family: 'Roboto', sans-serif;
     font-size: 32px;
@@ -308,34 +309,31 @@ margin-right:30%;
 .craftbanner {
     width: 60%;
     height: 800px;
-    background-color: red;
     position: absolute;
     left: -65%;
     top: 32%;
     z-index: 1;
-    box-shadow: 15px 15px #767676;
+    box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
 
 .buildbanner {
     width: 60%;
     height: 800px;
-    background-color: red;
     position: absolute;
     left: -65%;
     top: 50%;
     z-index: 1;
-    box-shadow: 15px 15px #767676;
+    box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
 
 .invbanner {
     width: 60%;
     height: 800px;
-    background-color: red;
     position: absolute;
     left: -65%;
     top: 68%;
     z-index: 1;
-    box-shadow: 15px 15px #767676;
+    box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
 
 .bannerimg{
@@ -453,13 +451,27 @@ margin-right:30%;
     height: auto;
     position: absolute;
     left: 60%;
-    top: 90%;
+    top: 91%;
     z-index: 2;
     font-family: 'Roboto', sans-serif;
     font-size: 32px;
     font-weight: 200;
     color: #ffffff;
     text-align:right;
+}
+
+.contactUsDetails1 {
+    width: 700px;
+    height: auto;
+    position: absolute;
+    left: 60%;
+    top: 92%;
+    z-index: 2;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: 200;
+    color: #ffffff;
+    text-align: right;
 }
 
 
@@ -498,6 +510,22 @@ margin-right:30%;
     font-family: 'Aldrich', sans-serif;
 }
 
+    .backpacktab:hover {
+        width: 220px;
+        height: 50px;
+        background-color: #0067B1;
+        text-align: right;
+        color: #ffffff;
+        margin-top: 10px;
+        font-size: 20px;
+        padding-right: 15px;
+        padding-top: 9px;
+        font-family: 'Aldrich', sans-serif;
+    }
+
+
+
+
 .basetab {
     width: 200px;
     height: 50px;
@@ -511,12 +539,40 @@ margin-right:30%;
     font-family: 'Aldrich', sans-serif;
 }
 
+
+.basetab:hover {
+    width: 220px;
+    height: 50px;
+    background-color: #0067B1;
+    text-align: right;
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 9px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+
 .Survivaltenttab {
     width: 200px;
     height: 50px;
     background-color: #202320;
     text-align: right;
     color: #898989;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 9px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.Survivaltenttab:hover {
+    width: 220px;
+    height: 50px;
+    background-color: #0067B1;
+    text-align: right;
+    color: #ffffff;
     margin-top: 10px;
     font-size: 20px;
     padding-right: 15px;
@@ -716,13 +772,24 @@ margin-right:30%;
     margin-left:10px;
 }
 
+
+    .Workbench:hover {
+        height: 180px;
+        width: 16%;
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-bottom: 5px solid #0067B1;
+    }
+
+
 .Workbenchimg {
     width: auto;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .workbenchname {
@@ -760,12 +827,40 @@ margin-right:30%;
     font-family: 'Aldrich', sans-serif;
 }
 
+.backpacktabCrafting:hover {
+    width: 220px;
+    height: 50px;
+    background-color: #0067B1;
+    text-align: right;
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 9px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+
+
 .basetabCrafting {
     width: 200px;
     height: 50px;
     background-color: #202320;
     text-align: right;
     color: #898989;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 9px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+.basetabCrafting:hover {
+    width: 220px;
+    height: 50px;
+    background-color: #0067B1;
+    text-align: right;
+    color: #ffffff;
     margin-top: 10px;
     font-size: 20px;
     padding-right: 15px;
@@ -786,12 +881,26 @@ margin-right:30%;
     font-family: 'Aldrich', sans-serif;
 }
 
+.SurvivaltenttabCrafting:hover {
+    width: 220px;
+    height: 50px;
+    background-color: #0067B1;
+    text-align: right;
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-right: 15px;
+    padding-top: 9px;
+    font-family: 'Aldrich', sans-serif;
+}
+
 
 .Craftingcon{
     float:left;
     width: 80%;
-    height:700px;
+    height:650px;
     margin-left:60px;
+    overflow-y:scroll;
 }
 
 .workbenchitemtypes {
@@ -816,7 +925,7 @@ margin-right:30%;
 }
 
 .craftitem {
-    width: 10%;
+    width: 9%;
     height: 94%;
     margin-left:5px;
     margin-top: 5px;
@@ -835,18 +944,21 @@ margin-right:30%;
     font-size: 26px;
     color: #EAE295;
     font-family: 'Roboto', sans-serif;
+
+    
 }
 
 .craftitemmaterial {
-    width: 10%;
+    width: 9%;
     height: 94%;
     margin-left: 5px;
     margin-top: 5px;
     float: left;
+
 }
 
 .plussign {
-    width: 2%;
+    width: 1%;
     height: 94%;
     float: left;
     background: none;
@@ -857,49 +969,66 @@ margin-right:30%;
     font-size: 26px;
     color: #EAE295;
     font-family: 'Roboto', sans-serif;
+
 }
 
 
-.craftimage{
-    width:85px;
-    height:85px;
-    margin-top:-15px;
+.craftimage {
+    width: 85px;
+    height: 85px;
+    margin-top: -15px;
+
 }
 
 .craftitemname {
     text-align: center;
     width: 100%;
-    margin-top:5px;
+    margin-top: 5px;
     color: #EAE295;
-    text-align:center;
+    text-align: center;
     font-size: 16px;
     float: left;
     font-family: 'Roboto', sans-serif;
+
+}
+
+
+.craftitemname2 {
+    text-align: center;
+    width: 100%;
+    margin-top: 2px;
+    color: #EAE295;
+    text-align: center;
+    font-size: 16px;
+    float: left;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 
 .craftbutton {
-    height: 124px;
-    color: #FFEB33;
-    font-size:36px;
+    height: 122px;
+    color: #0067B1;
+    font-size: 46px;
     width: 15%;
     border: none;
-    background-color: #0067B1;
+    background-color: #FFEB33;
+    font-weight:500;
     float: right;
-    margin-right:-15%;
+    margin-right: -15%;
 }
 
 
 .craftverify {
-    height: 25px;
+    height: 29px;
     color: #ffffff;
-    background-color: #333630;
+    background-color: #0067B1;
     font-size: 16px;
     width: 15%;
-    text-align:center;
+    text-align: center;
     border: 3px solid #FFEB33;
     float: right;
-    margin-top: 124px;
+    margin-top: 122px;
 }
 
 .craftsuccessfail {
@@ -994,12 +1123,12 @@ float:left;
 }
 
 .mapcon {
-    width: 800px;
-    height: 800px;
+    width: 810px;
+    height: 810px;
     float: left;
     margin-left: 450px;
     margin-top: 80px;
-
+    border: 5px solid #202320;
 }
 
 .map {
@@ -1061,7 +1190,7 @@ float:left;
     height:300px;
     background-color: #202320;
    margin-top:500px;
-   margin-left:100px;
+   margin-left:70px;
    position:absolute;
 }
 

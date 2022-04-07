@@ -20,15 +20,16 @@ namespace Fallout_tec.Pages
         public void OnGet()
         {
             InventoryItems = Database.GetInventory();
+
         }
 
-        public IActionResult OnPostUpdate(string itemname, int itemcount, int itemlocation)
+        public void OnPostUpdate(string itemname, int itemcount, int itemlocation)
         { 
             Console.WriteLine($"{itemname}{itemcount}{itemlocation}");  
            Database.UpdateInvItemsQuantity(itemname, itemcount, itemlocation);
+            InventoryItems = Database.GetCraftingSearch(itemlocation);
 
-            //redirect
-            return RedirectToPage("./inventorypage");
+
         }
         public void OnPostSearch(string search, int location)
         {
