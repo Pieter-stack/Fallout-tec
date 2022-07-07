@@ -16,10 +16,18 @@ namespace Fallout_tec.Pages
 
 
         }
-
-        public void OnGet()
+        //https://stackoverflow.com/questions/14956027/how-to-pass-values-across-the-pages-in-asp-net-without-using-session
+        public void OnGet(int location)
         {
             InventoryItems = Database.GetInventory();
+
+        }
+        //1. pass the query param in die nav bar link
+        //2. Layout n on click function add vir die link, wat die localstorage clear
+        public void OnGetLocation(int location)
+        {
+            Console.WriteLine($"{location}");
+            InventoryItems = Database.GetCraftingSearch(location);
 
         }
 

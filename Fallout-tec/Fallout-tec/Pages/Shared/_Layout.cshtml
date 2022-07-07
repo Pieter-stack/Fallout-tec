@@ -45,13 +45,24 @@
                             <a class="navtext  navhome" style="margin-left:20px;" asp-area="" asp-page="/Homepage">Home</a>
                         </li>
                         <li class="nav-item" style="margin-left:10px;">
-                            <a class="navtext  navinventory" style="margin-left:20px;" asp-area="" asp-page="/inventorypage">Inventory</a>
+
+                            
+
+
+
+
+                            <a class="navtext  navinventory" style="margin-left:20px;" asp-area="" asp-page="/inventorypage" asp-page-handler="1">Inventory</a>
+
+
+
+
+
                         </li>
                         <li class="nav-item" style="margin-left:10px;">
-                            <a class="navtext  navcrafting" style="margin-left:20px;" asp-area="" asp-page="/Craftingpage">Crafting</a>
+                            <a class="navtext  navcrafting" style="margin-left:20px;" asp-area="" asp-page="/Craftingpage" asp-page-handler="1">Crafting</a>
                         </li>
                         <li class="nav-item" style="margin-left:10px;">
-                            <a class="navtext  navlocation" style="margin-left:20px;" asp-area="" asp-page="/Locationpage">Location</a>
+                            <a class="navtext  navlocation" style="margin-left:20px;" asp-area="" asp-page="/Locationpage" asp-page-handler="1">Location</a>
                         </li>
 
                         <li class="nav-item" style="margin-left:10px;">
@@ -120,6 +131,14 @@ $(".navperks").on("click", funtion(){
 	localStorage.setItem("active", 1); 
     localStorage.setItem("station", "ArmourWorkbench"); 
 });
+
+
+
+
+
+
+
+
 });
 </script>
 

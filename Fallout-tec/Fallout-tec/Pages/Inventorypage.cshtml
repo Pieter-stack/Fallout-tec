@@ -128,6 +128,7 @@
 </style>
 
 <script>
+
 $(document).ready(function() {
 	//onclick for location buttons/ for styling
 $(".backpacktab").click(function () {
@@ -142,11 +143,26 @@ $(".Survivaltenttab").click(function () {
 	localStorage.setItem("active", 3);  
 });
 
-	let activeclass = localStorage.getItem("active");
-	console.log(activeclass)
+
+var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var activeclasscustom = url.searchParams.get("handler");
+console.log(activeclasscustom);
 
 
 
+
+if(activeclasscustom == 1){
+	localStorage.setItem("active", 1); 
+	let activeclass = 1;
+}
+
+
+
+let activeclass = localStorage.getItem("active");
+console.log(activeclass);
+
+	
 	if(activeclass == 1){
 		 $(".backpacktab").addClass("locationtabbtn");
 		     $(".basetab").removeClass("locationtabbtn");

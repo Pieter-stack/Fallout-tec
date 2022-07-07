@@ -407,8 +407,21 @@ $(".SurvivaltenttabCrafting").click(function () {
 	document.forms[0].submit()
 });
 
-	let activeclass = localStorage.getItem("active");
-	console.log(activeclass)
+
+var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var activeclasscustom = url.searchParams.get("handler");
+console.log(activeclasscustom);
+
+if(activeclasscustom == 1){
+	localStorage.setItem("active", 1); 
+	let activeclass = 1;
+}
+
+
+
+let activeclass = localStorage.getItem("active");
+console.log(activeclass);
 
 
 

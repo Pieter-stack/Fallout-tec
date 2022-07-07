@@ -229,7 +229,7 @@ margin-right:30%;
 .background {
     width: 100%;
     margin-top: -21px;
-    height: 5800px;
+    height: 6800px;
     background-color: #333630;
 
 
@@ -286,7 +286,7 @@ margin-right:30%;
     width: 700px;
     height: auto;
     position: absolute;
-    top:25%;
+    top:20%;
     left:35%;
     z-index: 2;
     font-family: 'Aldrich', sans-serif;
@@ -311,7 +311,7 @@ margin-right:30%;
     height: 800px;
     position: absolute;
     left: -65%;
-    top: 32%;
+    top: 25%;
     z-index: 1;
     box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
@@ -321,7 +321,7 @@ margin-right:30%;
     height: 800px;
     position: absolute;
     left: -65%;
-    top: 50%;
+    top: 40%;
     z-index: 1;
     box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
@@ -331,10 +331,24 @@ margin-right:30%;
     height: 800px;
     position: absolute;
     left: -65%;
-    top: 68%;
+    top: 55%;
     z-index: 1;
     box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
 }
+
+
+.perkbanner {
+    width: 60%;
+    height: 800px;
+    position: absolute;
+    left: -65%;
+    top: 70%;
+    z-index: 1;
+    box-shadow: 10px 10px 10px -4px rgba(115,115,115,1);
+}
+
+
+
 
 .bannerimg{
     width: 100%;
@@ -417,6 +431,22 @@ margin-right:30%;
     position: absolute;
     left: 33%;
     bottom: 10%;
+    text-align: center;
+    z-index: 1;
+    color: #181818;
+    font-size: 26px;
+    font-family: 'Aldrich', sans-serif;
+}
+
+
+.btnperkban {
+    width: 450px;
+    border: none;
+    height: 70px;
+    background-color: #FFEB33;
+    position: absolute;
+    left: 62%;
+    bottom: 4%;
     text-align: center;
     z-index: 1;
     color: #181818;

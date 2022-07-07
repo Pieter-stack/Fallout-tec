@@ -24,18 +24,22 @@
 	<div class="craftbanner" id="craftbanner">
 	<img class="bannerimg" src="~/images/craftbanner.png" alt="banner"/> 
 	<h1 class="craftbanHeading">Craft to <br>your hearts <br>desire</h1>
-	<a asp-area="" asp-page="/Craftingpage"><button class=btncraftban >Get Crafting Now</button></a>
+	<a asp-area="" asp-page-handler="1" asp-page="/Craftingpage"><button class=btncraftban >Get Crafting Now</button></a>
 	</div>
 	<div class="buildbanner">
 	<img class="bannerimg" src="~/images/buildbanner.png" alt="banner"/> 
 	<h1 class="buildbanHeading">Build<br> Anywhere</h1>
-		<a asp-area="" asp-page="/Locationpage"><button class="btnbuildban"  >Explore Locations </button></a>
+		<a asp-area="" asp-page-handler="1" asp-page="/Locationpage"><button class="btnbuildban"  >Explore Locations </button></a>
 	</div>
 		<img class="LargeYellowGear" src="~/images/largeYellowGear.png" alt="gear"/> 
 	<div class="invbanner">
 	<img class="bannerimg" src="~/images/invbanner.png" alt="banner"/> 
 	<h1 class="invbanHeading">Store <br> Anything</h1>
-		<a asp-area="" asp-page="/Inventorypage"><button class=btninvban>Check Inventory</button></a>
+		<a asp-area="" asp-page-handler="1" asp-page="/Inventorypage"><button class=btninvban>Check Inventory</button></a>
+	</div>
+		<div class="perkbanner">
+	<img class="bannerimg" src="~/images/perkbanner.png" alt="banner"/> 
+		<a asp-area="" asp-page-handler="1" asp-page="/Marketpage"><button class=btnperkban>See Perks</button></a>
 	</div>
 	<h1 class="contactUs">Contact <br> Us</h1>
 	<a href="mailto:fallouttec12@gmail.com"></><h1 class="contactUsDetails" >fallouttec12@gmail.com</h1></a>
@@ -55,7 +59,7 @@
 .background-dark{
     width: 100%;
     margin-top: -21px;
-    height: 5800px;
+    height: 6800px;
 
 	background-color: rgba(0, 0, 0, 0.6)
 }
@@ -92,6 +96,13 @@ if ($(this).scrollTop() > 3000) {
     $('.invbanner').stop().animate({ left: "20%" });
 } else {
    $('.invbanner').stop().animate({ left: "-65%" });
+}
+
+	//scroll animation for fourth banner
+if ($(this).scrollTop() > 4000) {
+    $('.perkbanner').stop().animate({ left: "20%" });
+} else {
+   $('.perkbanner').stop().animate({ left: "-65%" });
 }
 });
 

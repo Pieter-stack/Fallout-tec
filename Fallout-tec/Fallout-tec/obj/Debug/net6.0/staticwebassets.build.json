@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a+sfltJIOEjgXUvOuhmHLdOpWtfpNLaH05xtxuf4oq4=",
+  "Hash": "u6cCYaC9nDOX2cDwLbPuFbVNtxDLoHRbgSqZ46GC8bk=",
   "Source": "Fallout-tec",
   "BasePath": "_content/Fallout-tec",
   "Mode": "Default",
@@ -3602,6 +3602,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\perk9.png"
+    },
+    {
+      "Identity": "C:\\Users\\piete\\OneDrive\\Documents\\GitHub\\Fallout-tec\\Fallout-tec\\Fallout-tec\\wwwroot\\images\\perkbanner.png",
+      "SourceId": "Fallout-tec",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\piete\\OneDrive\\Documents\\GitHub\\Fallout-tec\\Fallout-tec\\Fallout-tec\\wwwroot\\",
+      "BasePath": "_content/Fallout-tec",
+      "RelativePath": "images/perkbanner.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\perkbanner.png"
     },
     {
       "Identity": "C:\\Users\\piete\\OneDrive\\Documents\\GitHub\\Fallout-tec\\Fallout-tec\\Fallout-tec\\wwwroot\\images\\perktree.png",
